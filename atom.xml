@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://fanqi.github.io/atom.xml" rel="self"/>
   <link href="http://fanqi.github.io/"/>
-  <updated>2016-05-13T22:44:27+08:00</updated>
+  <updated>2016-05-13T22:46:58+08:00</updated>
   <id>http://fanqi.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -189,19 +189,13 @@
 
 <h2>在github上绑定自定义域名</h2>
 
-<ol>
-<li>创建 source/CNAME 文件并指定域名</li>
-</ol>
-
+<p>1.创建 source/CNAME 文件并指定域名</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>echo 'domain.com' &gt;&gt; source/CNAME</span></code></pre></td></tr></table></div></figure>
 
 
-<ol>
-<li>重新部署到github上</li>
-</ol>
-
+<p>2.重新部署到github上</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
