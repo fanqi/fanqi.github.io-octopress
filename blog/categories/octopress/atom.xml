@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | My Octopress Blog]]></title>
   <link href="http://fanqi.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://fanqi.github.io/"/>
-  <updated>2016-05-13T18:48:10+08:00</updated>
+  <updated>2016-05-13T18:50:52+08:00</updated>
   <id>http://fanqi.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[使用Octopress搭建静态博客]]></title>
+    <title type="html"><![CDATA[使用Octopress搭建静态博客网站]]></title>
     <link href="http://fanqi.github.io/blog/2016/05/13/use-octopress-build-static-blog-site/"/>
     <updated>2016-05-13T18:39:41+08:00</updated>
     <id>http://fanqi.github.io/blog/2016/05/13/use-octopress-build-static-blog-site</id>
