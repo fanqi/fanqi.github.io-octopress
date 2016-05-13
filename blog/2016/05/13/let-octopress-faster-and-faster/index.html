@@ -9,8 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。
-通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问： http://fonts.googleapis.com/css?family=PT+Serif:regular, &hellip;">
+  <meta name="description" content="今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：
+1. http://fonts.googleapis.com/css?family=PT+Serif: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,32 +85,27 @@
   </header>
 
 
-<div class="entry-content"><p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。
-通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：</p>
+<div class="entry-content"><p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：
+1. <a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a>
+2. <a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a>
+3. <a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a>
+4. <a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></p>
 
-<ol>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a></li>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></li>
-</ol>
+<h2>优化Octopress的访问速度</h2>
 
-
-<p><strong> 优化方法如下：</strong></p>
-
-<p><strong> 1.使用360网站卫士代理访问Google前端公共库 </strong></p>
+<h3>1.使用360网站卫士代理访问Google前端公共库</h3>
 
 <p>调用Google前端公共库的文件是<code>octopress/source/_includes/head.html</code>，将其中的<code>ajax.googleapis.com</code>修改为<code>ajax.useso.com</code>。</p>
 
-<p><strong> 2.使用360网站卫士代理访问Google免费字体库 </strong></p>
+<h3>2.使用360网站卫士代理访问Google免费字体库</h3>
 
 <p>调用Google免费字体库的文件是<code>/octopress/source/_includes/custom/head.html</code>，将其中的<code>fonts.googleapis.com</code>修改为：<code>fonts.useso.com</code>。</p>
 
-<p><strong> 3.禁用twitter分享按钮 </strong></p>
+<h3>3.禁用twitter分享按钮</h3>
 
 <p>在<code>octopress/_config.yml</code>中找到<code>twitter_tweet_button</code>配置项，将<code>true</code>改为<code>false</code>。</p>
 
-<p><strong> 4.重新生成静态博客及部署 </strong></p>
+<h3>4.重新生成静态博客及部署</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -118,7 +113,7 @@
 </span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
 
 
-<p>然后就可以畅快的访问我们的Octopress博客网站了。</p>
+<p>之后我们就可以畅快的访问Octopress博客网站了。</p>
 </div>
 
 

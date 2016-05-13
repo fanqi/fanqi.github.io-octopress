@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | My Octopress Blog]]></title>
   <link href="http://fanqi.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://fanqi.github.io/"/>
-  <updated>2016-05-13T23:05:53+08:00</updated>
+  <updated>2016-05-13T23:17:45+08:00</updated>
   <id>http://fanqi.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,16 +18,11 @@
     <link href="http://fanqi.github.io/blog/2016/05/13/let-octopress-faster-and-faster/"/>
     <updated>2016-05-13T21:13:29+08:00</updated>
     <id>http://fanqi.github.io/blog/2016/05/13/let-octopress-faster-and-faster</id>
-    <content type="html"><![CDATA[<p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。
-通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：</p>
-
-<ol>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a></li>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></li>
-</ol>
-
+    <content type="html"><![CDATA[<p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：
+1. <a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a>
+2. <a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a>
+3. <a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a>
+4. <a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></p>
 
 <h2>优化Octopress的访问速度</h2>
 
@@ -41,14 +36,7 @@
 
 <h3>3.禁用twitter分享按钮</h3>
 
-<p>在<code>octopress/_config.yml</code>中找到<code>twitter_tweet_button</code>配置项，将<code>true</code>改为<code>false</code>。
-```</p>
-
-<h1>Twitter</h1>
-
-<p>twitter_user:
-twitter_tweet_button: false
-```</p>
+<p>在<code>octopress/_config.yml</code>中找到<code>twitter_tweet_button</code>配置项，将<code>true</code>改为<code>false</code>。</p>
 
 <h3>4.重新生成静态博客及部署</h3>
 

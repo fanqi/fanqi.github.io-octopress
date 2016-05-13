@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://fanqi.github.io/atom.xml" rel="self"/>
   <link href="http://fanqi.github.io/"/>
-  <updated>2016-05-13T22:46:58+08:00</updated>
+  <updated>2016-05-13T23:17:45+08:00</updated>
   <id>http://fanqi.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,32 +18,27 @@
     <link href="http://fanqi.github.io/blog/2016/05/13/let-octopress-faster-and-faster/"/>
     <updated>2016-05-13T21:13:29+08:00</updated>
     <id>http://fanqi.github.io/blog/2016/05/13/let-octopress-faster-and-faster</id>
-    <content type="html"><![CDATA[<p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。
-通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：</p>
+    <content type="html"><![CDATA[<p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：
+1. <a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a>
+2. <a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a>
+3. <a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a>
+4. <a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></p>
 
-<ol>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a></li>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></li>
-</ol>
+<h2>优化Octopress的访问速度</h2>
 
-
-<p><strong> 优化方法如下：</strong></p>
-
-<p><strong> 1.使用360网站卫士代理访问Google前端公共库 </strong></p>
+<h3>1.使用360网站卫士代理访问Google前端公共库</h3>
 
 <p>调用Google前端公共库的文件是<code>octopress/source/_includes/head.html</code>，将其中的<code>ajax.googleapis.com</code>修改为<code>ajax.useso.com</code>。</p>
 
-<p><strong> 2.使用360网站卫士代理访问Google免费字体库 </strong></p>
+<h3>2.使用360网站卫士代理访问Google免费字体库</h3>
 
 <p>调用Google免费字体库的文件是<code>/octopress/source/_includes/custom/head.html</code>，将其中的<code>fonts.googleapis.com</code>修改为：<code>fonts.useso.com</code>。</p>
 
-<p><strong> 3.禁用twitter分享按钮 </strong></p>
+<h3>3.禁用twitter分享按钮</h3>
 
 <p>在<code>octopress/_config.yml</code>中找到<code>twitter_tweet_button</code>配置项，将<code>true</code>改为<code>false</code>。</p>
 
-<p><strong> 4.重新生成静态博客及部署 </strong></p>
+<h3>4.重新生成静态博客及部署</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -51,7 +46,7 @@
 </span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
 
 
-<p>然后就可以畅快的访问我们的Octopress博客网站了。</p>
+<p>之后我们就可以畅快的访问Octopress博客网站了。</p>
 ]]></content>
   </entry>
   
@@ -60,15 +55,15 @@
     <link href="http://fanqi.github.io/blog/2016/05/13/use-octopress-build-static-blog-site/"/>
     <updated>2016-05-13T18:39:41+08:00</updated>
     <id>http://fanqi.github.io/blog/2016/05/13/use-octopress-build-static-blog-site</id>
-    <content type="html"><![CDATA[<h1>Octopress 介绍</h1>
+    <content type="html"><![CDATA[<h2>Octopress 介绍</h2>
 
 <blockquote><p>Octopress is a blogging framework for hackers.</p></blockquote>
 
 <p>如官网说的一样，Octopress是一个为黑客而生的博客框架，比较适合有一定shell和git命令基础，同时又喜欢折腾、热爱分享的童鞋，否则Octopress可能并不是一个合适的选择。</p>
 
-<h1>在Mac上安装Octopress</h1>
+<h2>在Mac上安装Octopress</h2>
 
-<h2>安装Ruby</h2>
+<h3>安装Ruby</h3>
 
 <p>安装Ruby之后将gem源修改为国内淘宝源。</p>
 
@@ -90,7 +85,7 @@
 </span><span class='line'>gem sources -l</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>克隆Octopress至本地</h2>
+<h3>克隆Octopress至本地</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -98,13 +93,13 @@
 </span><span class='line'>cd octopress</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>修改gem源</h2>
+<h3>修改gem源</h3>
 
 <p>使用<code>vi Gemfile</code>命令修改gem源，将
 <code>https://rubygems.org</code>
 改为<code>https://ruby.taobao.org</code>。</p>
 
-<h2>安装依赖包</h2>
+<h3>安装依赖包</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -112,13 +107,13 @@
 </span><span class='line'>bundle install</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>安装默认主题</h2>
+<h3>安装默认主题</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>预览</h2>
+<h3>预览</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
@@ -126,23 +121,23 @@
 
 <p>在通过浏览器打开 <a href="http://localhost:4000/">http://localhost:4000/</a> ，即可看到博客界面。</p>
 
-<h1>编写博客</h1>
+<h2>编写博客</h2>
 
 <p>编辑器推荐使用atom，默认安装了Markdown preview插件。</p>
 
-<h2>新建博客</h2>
+<h3>新建博客</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post["title"]</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>新建单页面</h2>
+<h3>新建单页面</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake new_page[about]</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>生成博客</h2>
+<h3>生成博客</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake generate</span></code></pre></td></tr></table></div></figure>
@@ -150,7 +145,7 @@
 
 <p>在<code>rake preview</code>的模式下，服务器会检查文件变化，自动生成。</p>
 
-<h2>预览</h2>
+<h3>预览</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
@@ -158,14 +153,14 @@
 
 <p>默认情况下，访问单页面需要在url后面追加/页面名称，例如 <a href="http://localhost:4000/about">http://localhost:4000/about</a> 才能查看about页面内容。</p>
 
-<h1>部署到github</h1>
+<h2>部署到github</h2>
 
-<h2>创建仓库</h2>
+<h3>创建仓库</h3>
 
 <p>仓库名：username.github.io，其中<code>username</code>必须与github的用户名一致。
 创建成功之后，就可以通过 <a href="http://username.github.io">http://username.github.io</a> 进行访问。</p>
 
-<h2>与本地 Octopress 目录绑定</h2>
+<h3>与本地 Octopress 目录绑定</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
@@ -179,15 +174,15 @@
 </ul>
 
 
-<h2>将博客部署到github上</h2>
+<h3>将博客部署到github上</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
 
 
-<h1>自定义域名</h1>
+<h2>自定义域名</h2>
 
-<h2>在github上绑定自定义域名</h2>
+<h3>在github上绑定自定义域名</h3>
 
 <p>1.创建 source/CNAME 文件并指定域名</p>
 
@@ -201,7 +196,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>解析域名至github</h2>
+<h3>解析域名至github</h3>
 
 <p>在域名解析中创建CNAME记录指向username.github.io。</p>
 
