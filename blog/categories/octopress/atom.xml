@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | My Octopress Blog]]></title>
+  <link href="http://fanqi.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://fanqi.github.io/"/>
+  <updated>2016-05-13T18:46:26+08:00</updated>
+  <id>http://fanqi.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[使用Octopress搭建静态博客]]></title>
+    <link href="http://fanqi.github.io/blog/2016/05/13/use-octopress-build-static-blog-site/"/>
+    <updated>2016-05-13T18:39:41+08:00</updated>
+    <id>http://fanqi.github.io/blog/2016/05/13/use-octopress-build-static-blog-site</id>
+    <content type="html"><![CDATA[<h1>Octopress 介绍</h1>
+
+<blockquote><p>Octopress is a blogging framework for hackers.</p></blockquote>
+
+<p>如官网说的一样，Octopress是一个为黑客而生的博客框架，比较适合有一定shell和git命令基础，同时又喜欢折腾、热爱分享的童鞋，否则Octopress可能并不是一个合适的选择。</p>
+
+<h1>在Mac上安装Octopress</h1>
+
+<h2>安装Ruby</h2>
+
+<p>安装Ruby之后将gem源修改为国内淘宝源。
+<code>
+curl -L https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+rvm -v
+rvm install 2.0.0
+gem -v
+gem sources --remove https://rubygems.org/
+gem sources -a https://ruby.taobao.org/
+gem sources -l
+</code></p>
+
+<h2>克隆Octopress至本地</h2>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress
+</code></pre>
+
+<h2>修改gem源</h2>
+
+<p><code>vi Gemfile</code>，将
+<code>https://rubygems.org</code>
+改为</p>
+
+<h2>安装依赖包</h2>
+
+<pre><code>gem install bundler
+bundle install
+</code></pre>
+
+<h2>安装默认主题</h2>
+
+<pre><code>rake install
+</code></pre>
+
+<h2>预览</h2>
+
+<pre><code>rake preview
+</code></pre>
+
+<p>在通过浏览器打开 <a href="http://localhost:4000/">http://localhost:4000/</a> ，即可看到博客界面。</p>
+
+<h1>编写博客</h1>
+
+<p>编辑器推荐使用atom，默认安装了Markdown preview插件。</p>
+
+<h2>新建博客</h2>
+
+<pre><code>rake new_post["title"]
+</code></pre>
+
+<h2>新建单页面</h2>
+
+<pre><code>rake new_page[about]
+</code></pre>
+
+<h2>生成博客</h2>
+
+<pre><code>rake generate
+</code></pre>
+
+<p>在<code>rake preview</code>的模式下，服务器会检查文件变化，自动生成。</p>
+
+<h2>预览</h2>
+
+<pre><code>rake preview
+</code></pre>
+
+<p>默认情况下，访问单页面需要在url后面追加/页面名称，例如 <a href="http://localhost:4000/about">http://localhost:4000/about</a> 才能查看about页面内容。</p>
+
+<h1>部署到github</h1>
+
+<h2>创建仓库</h2>
+
+<p>仓库名：username.github.io，其中<code>username</code>必须与github的用户名一致。
+创建成功之后，就可以通过 <a href="http://username.github.io">http://username.github.io</a> 进行访问。</p>
+
+<h2>与本地 Octopress 目录绑定</h2>
+
+<pre><code>    rake setup_github_pages
+</code></pre>
+
+<p><code>Repository url</code>可以有两种方式配置：</p>
+
+<ul>
+<li>git@github.com:your_username/your_username.github.io.git</li>
+<li><a href="https://github.com/your_username/your_username.github.io">https://github.com/your_username/your_username.github.io</a></li>
+</ul>
+
+
+<h2>将博客部署到github上</h2>
+
+<pre><code>rake deploy
+</code></pre>
+
+<h1>自定义域名</h1>
+
+<h2>在github上绑定自定义域名</h2>
+
+<ol>
+<li>创建 source/CNAME 文件并指定域名
+<code>
+echo 'domain.com' &gt;&gt; source/CNAME
+</code></li>
+<li>重新部署到github上
+<code>
+rake deploy
+</code></li>
+</ol>
+
+
+<h2>解析域名至github</h2>
+
+<ol>
+<li><p>使用子域名
+对于子域名(www.domain.com)，创建CNAME记录指向username.github.io</p></li>
+<li><p>使用顶级域名
+对于顶级域名(domain.com)，使用 A 记录指向192.30.252.153(154)</p></li>
+</ol>
+
+
+<h2>结束语</h2>
+
+<p>至此，一个拥有独立域名的静态博客网站就建好了，开始像黑客一样写博客吧。</p>
+]]></content>
+  </entry>
+  
+</feed>
