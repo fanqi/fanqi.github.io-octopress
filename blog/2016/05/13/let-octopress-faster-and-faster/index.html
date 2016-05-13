@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>优化Octopress的访问速度 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。
+通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问： http://fonts.googleapis.com/css?family=PT+Serif:regular, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fanqi.github.io/blog/2016/05/13/let-octopress-faster-and-faster/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.useso.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="fanqi.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">优化Octopress的访问速度</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-13T21:13:29+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:13 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。
+通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：</p>
+
+<ol>
+<li><a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a></li>
+<li><a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a></li>
+<li><a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a></li>
+<li><a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></li>
+</ol>
+
+
+<p><strong> 优化方法如下：</strong></p>
+
+<p><strong> 1.使用360网站卫士代理访问Google前端公共库 </strong></p>
+
+<p>调用Google前端公共库的文件是<code>octopress/source/_includes/head.html</code>，将其中的<code>ajax.googleapis.com</code>修改为<code>ajax.useso.com</code>。</p>
+
+<p><strong> 2.使用360网站卫士代理访问Google免费字体库 </strong></p>
+
+<p>调用Google免费字体库的文件是<code>/octopress/source/_includes/custom/head.html</code>，将其中的<code>fonts.googleapis.com</code>修改为：<code>fonts.useso.com</code>。</p>
+
+<p><strong> 3.禁用twitter分享按钮 </strong></p>
+
+<p>在<code>octopress/_config.yml</code>中找到<code>twitter_tweet_button</code>配置项，将<code>true</code>改为<code>false</code>。</p>
+
+<p><strong> 4.重新生成静态博客及部署 </strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
+</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后就可以畅快的访问我们的Octopress博客网站了。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-05-13T21:13:29+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:13 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/05/13/use-octopress-build-static-blog-site/" title="Previous Post: 使用Octopress搭建静态博客网站">&laquo; 使用Octopress搭建静态博客网站</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/05/13/let-octopress-faster-and-faster/">优化Octopress的访问速度</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/05/13/use-octopress-build-static-blog-site/">使用Octopress搭建静态博客网站</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://fanqi.github.io/atom.xml" rel="self"/>
   <link href="http://fanqi.github.io/"/>
-  <updated>2016-05-13T21:06:48+08:00</updated>
+  <updated>2016-05-13T22:44:27+08:00</updated>
   <id>http://fanqi.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[优化Octopress的访问速度]]></title>
+    <link href="http://fanqi.github.io/blog/2016/05/13/let-octopress-faster-and-faster/"/>
+    <updated>2016-05-13T21:13:29+08:00</updated>
+    <id>http://fanqi.github.io/blog/2016/05/13/let-octopress-faster-and-faster</id>
+    <content type="html"><![CDATA[<p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。
+通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：</p>
+
+<ol>
+<li><a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a></li>
+<li><a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a></li>
+<li><a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a></li>
+<li><a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></li>
+</ol>
+
+
+<p><strong> 优化方法如下：</strong></p>
+
+<p><strong> 1.使用360网站卫士代理访问Google前端公共库 </strong></p>
+
+<p>调用Google前端公共库的文件是<code>octopress/source/_includes/head.html</code>，将其中的<code>ajax.googleapis.com</code>修改为<code>ajax.useso.com</code>。</p>
+
+<p><strong> 2.使用360网站卫士代理访问Google免费字体库 </strong></p>
+
+<p>调用Google免费字体库的文件是<code>/octopress/source/_includes/custom/head.html</code>，将其中的<code>fonts.googleapis.com</code>修改为：<code>fonts.useso.com</code>。</p>
+
+<p><strong> 3.禁用twitter分享按钮 </strong></p>
+
+<p>在<code>octopress/_config.yml</code>中找到<code>twitter_tweet_button</code>配置项，将<code>true</code>改为<code>false</code>。</p>
+
+<p><strong> 4.重新生成静态博客及部署 </strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
+</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后就可以畅快的访问我们的Octopress博客网站了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[使用Octopress搭建静态博客网站]]></title>
@@ -167,13 +209,7 @@
 
 <h2>解析域名至github</h2>
 
-<ol>
-<li><p>使用子域名
-对于子域名(www.domain.com)，创建CNAME记录指向username.github.io</p></li>
-<li><p>使用顶级域名
-对于顶级域名(domain.com)，使用 A 记录指向192.30.252.153(154)</p></li>
-</ol>
-
+<p>在域名解析中创建CNAME记录指向username.github.io。</p>
 
 <h2>结束语</h2>
 
