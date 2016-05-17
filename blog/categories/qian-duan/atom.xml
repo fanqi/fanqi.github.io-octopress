@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 前端 | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/qian-duan/atom.xml" rel="self"/>
+  <link href="http://www.fanqi.xyz/"/>
+  <updated>2016-05-17T12:51:35+08:00</updated>
+  <id>http://www.fanqi.xyz/</id>
+  <author>
+    <name><![CDATA[范琪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[前端开发资源]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/17/the-front-end-development-resources/"/>
+    <updated>2016-05-17T12:44:30+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/17/the-front-end-development-resources</id>
+    <content type="html"><![CDATA[<h2>工具篇</h2>
+
+<h2>JSLint</h2>
+
+<p>检查JavaScript正确性</p>
+
+<h2>All JS</h2>
+
+<p>展示网页中的所有JS</p>
+
+<h2>All JS Beautified</h2>
+
+<p>美化网页中的所有JS，加强可读性</p>
+
+<h2>All JS Minified</h2>
+
+<p>压缩网页中所有的JS，删除换行符、空格等</p>
+
+<h2>All CSS</h2>
+
+<p>展示网页中的所有CSS</p>
+
+<h2>YUI CSS Compressor</h2>
+
+<p>压缩CSS</p>
+
+<h2>All Smush.it</h2>
+
+<p>优化压缩图片</p>
+]]></content>
+  </entry>
+  
+</feed>

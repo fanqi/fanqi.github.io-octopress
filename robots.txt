@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://fanqi.github.io/sitemap.xml 
+Sitemap: http://www.fanqi.xyz/sitemap.xml 

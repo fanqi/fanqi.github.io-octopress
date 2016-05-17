@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://fanqi.github.io/blog/2016/05/13/let-octopress-faster-and-faster/</loc>
+<loc>http://www.fanqi.xyz/blog/2016/05/17/the-front-end-development-resources/</loc>
+<lastmod>2016-05-17T12:44:30+08:00</lastmod>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/2016/05/13/octopress-personalized-configuration/</loc>
+<lastmod>2016-05-13T23:26:52+08:00</lastmod>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/2016/05/13/let-octopress-faster-and-faster/</loc>
 <lastmod>2016-05-13T21:13:29+08:00</lastmod>
 </url>
 <url>
-<loc>http://fanqi.github.io/blog/2016/05/13/use-octopress-build-static-blog-site/</loc>
-<lastmod>2016-05-13T18:39:41+08:00</lastmod>
+<loc>http://www.fanqi.xyz/blog/archives/</loc>
 </url>
 <url>
-<loc>http://fanqi.github.io/blog/archives/</loc>
+<loc>http://www.fanqi.xyz/</loc>
 </url>
 <url>
-<loc>http://fanqi.github.io/</loc>
+<loc>http://www.fanqi.xyz/about/</loc>
 </url>
 <url>
-<loc>http://fanqi.github.io/blog/categories/octopress/</loc>
+<loc>http://www.fanqi.xyz/blog/categories/octopress/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/qian-duan/</loc>
 </url>
 </urlset>
