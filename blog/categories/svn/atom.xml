@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Svn | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/svn/atom.xml" rel="self"/>
+  <link href="http://www.fanqi.xyz/"/>
+  <updated>2016-05-18T07:36:38+08:00</updated>
+  <id>http://www.fanqi.xyz/</id>
+  <author>
+    <name><![CDATA[范琪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SVN命令汇总]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/18/the-svn-command-summary/"/>
+    <updated>2016-05-18T06:56:57+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/18/the-svn-command-summary</id>
+    <content type="html"><![CDATA[<p><a href="http://subversion.apache.org/">Subversion</a> 是一个版本控制工具。</p>
+
+<h2>基本用法</h2>
+
+<pre><code>svn &lt;子命令&gt; [可选项] [参数]
+</code></pre>
+
+<p>查看版本信息和资源访问信息：
+<code>bash
+svn --version
+</code>
+仅仅查看版本信息：
+<code>
+svn --version --quiet
+</code></p>
+
+<h2>可用子命令</h2>
+
+<pre><code>添加：add
+blame (praise, annotate, ann)
+cat
+changelist (cl)
+检出：checkout (co)
+清理：cleanup
+提交：commit (ci)
+复制：copy (cp)
+删除：delete (del, remove, rm)
+diff (di)
+导出：export
+帮助：help (?, h)
+导入：import
+信息：info
+列表：list (ls)
+锁定：lock
+日志：log
+合并：merge
+合并信息：mergeinfo
+创建文件夹：mkdir
+移动：move (mv, rename, ren)
+patch
+propdel (pdel, pd)
+propedit (pedit, pe)
+propget (pget, pg)
+proplist (plist, pl)
+propset (pset, ps)
+relocate
+resolve
+resolved
+revert
+状态：status (stat, st)
+switch (sw)
+解锁：unlock
+更新：update (up)
+升级：upgrade
+</code></pre>
+
+<h2>help 帮助信息</h2>
+
+<p>查看全局帮助信息：
+<code>bash
+svn help
+</code>
+查看特定命令的帮助信息：
+<code>bash
+svn help &lt;子命令&gt;
+</code></p>
+
+<h2>checkout 检查项目</h2>
+
+<pre><code>svn checkout svn://localhost/svn
+</code></pre>
+
+<p>或者
+<code>
+svn co svn://localhost/svn
+</code></p>
+
+<h2>commit 提交项目</h2>
+
+<p>提交一个文件：
+<code>
+svn commit -m '第一次提交' Test.java
+</code></p>
+
+<h2>update 更新</h2>
+
+<p>更新当前目录及子目录：
+<code>
+svn update
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
