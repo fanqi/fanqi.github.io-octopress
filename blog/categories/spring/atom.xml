@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Spring | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/spring/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-18T11:55:45+08:00</updated>
+  <updated>2016-05-18T11:57:10+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -27,7 +27,7 @@
 &lt;/tx:advice&gt;
 </code></pre>
 
-<p>其中，<code>propagation</code>的属性值有<code>REQUIRED</code>、<code>SUPPORTS</code>、<code>MANDATORY</code>、<code>REQUIRES_NEW</code>、<code>NOT_SUPPORTED</code>、<code>NEVER</code>、<code>NESTED</code>等7种，默认是<code>REQUIRED</code>。
+<p>其中，<code>propagation</code>的属性值有<code>REQUIRED</code>、<code>SUPPORTS</code>、<code>MANDATORY</code>、<code>REQUIRES_NEW</code>、<code>NOT_SUPPORTED</code>、<code>NEVER</code>、<code>NESTED</code>等7种，默认是<code>REQUIRED</code>。<br/>
 1. <code>REQUIRED</code>:如果存在一个事务，则支持当前事务;如果没有事务则开启。
 2. <code>SUPPORTS</code>:如果存在一个事务，支持当前事务;如果没有事务，则非事务的执行。
 3. <code>MANDATORY</code>:如果已经存在一个事务，支持当前事务;如果没有一个活动的事务，则抛出异常。
