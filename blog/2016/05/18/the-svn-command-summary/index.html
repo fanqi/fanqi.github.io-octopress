@@ -10,9 +10,13 @@
 
   
   <meta name="description" content="Subversion 是一个版本控制工具。Mac自带该软件，但是Mac上好用的客户端软件不多，因此有必要掌握svn的基本命令。 基本用法 1
-svn &lt;子命令&gt; [可选项] [参数] 查看版本信息和资源访问信息： 1
-svn --version 仅仅查看版本信息： 1
-svn -- &hellip;">
+svn &lt;子命令&gt; [可选项] [参数] 查看版本信息 1
+2
+3
+4
+5
+# 查看版本信息和资源访问信息
+svn --version # &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,24 +100,25 @@ svn -- &hellip;">
 </pre></td><td class='code'><pre><code class=''><span class='line'>svn &lt;子命令&gt; [可选项] [参数]</span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-查看版本信息和资源访问信息：</p>
+<p></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>svn --version
-</span></code></pre></td></tr></table></div></figure>
+<h2>查看版本信息</h2>
 
-
-<p>仅仅查看版本信息：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>svn --version --quiet
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 查看版本信息和资源访问信息
+</span><span class='line'>svn --version
+</span><span class='line'>
+</span><span class='line'># 仅仅查看版本信息
+</span><span class='line'>svn --version --quiet</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>可用子命令</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -149,91 +154,80 @@ svn -- &hellip;">
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>添加：add
-</span><span class='line'>blame <span class="o">(</span>praise, annotate, ann<span class="o">)</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>添加：add
+</span><span class='line'>blame (praise, annotate, ann)
 </span><span class='line'>cat
-</span><span class='line'>changelist <span class="o">(</span>cl<span class="o">)</span>
-</span><span class='line'>检出：checkout <span class="o">(</span>co<span class="o">)</span>
+</span><span class='line'>changelist (cl)
+</span><span class='line'>检出：checkout (co)
 </span><span class='line'>清理：cleanup
-</span><span class='line'>提交：commit <span class="o">(</span>ci<span class="o">)</span>
-</span><span class='line'>复制：copy <span class="o">(</span>cp<span class="o">)</span>
-</span><span class='line'>删除：delete <span class="o">(</span>del, remove, rm<span class="o">)</span>
-</span><span class='line'>diff <span class="o">(</span>di<span class="o">)</span>
+</span><span class='line'>提交：commit (ci)
+</span><span class='line'>复制：copy (cp)
+</span><span class='line'>删除：delete (del, remove, rm)
+</span><span class='line'>diff (di)
 </span><span class='line'>导出：export
-</span><span class='line'>帮助：help <span class="o">(</span>?, h<span class="o">)</span>
+</span><span class='line'>帮助：help (?, h)
 </span><span class='line'>导入：import
 </span><span class='line'>信息：info
-</span><span class='line'>列表：list <span class="o">(</span>ls<span class="o">)</span>
+</span><span class='line'>列表：list (ls)
 </span><span class='line'>锁定：lock
 </span><span class='line'>日志：log
 </span><span class='line'>合并：merge
 </span><span class='line'>合并信息：mergeinfo
 </span><span class='line'>创建文件夹：mkdir
-</span><span class='line'>移动：move <span class="o">(</span>mv, rename, ren<span class="o">)</span>
+</span><span class='line'>移动：move (mv, rename, ren)
 </span><span class='line'>patch
-</span><span class='line'>propdel <span class="o">(</span>pdel, pd<span class="o">)</span>
-</span><span class='line'>propedit <span class="o">(</span>pedit, pe<span class="o">)</span>
-</span><span class='line'>propget <span class="o">(</span>pget, pg<span class="o">)</span>
-</span><span class='line'>proplist <span class="o">(</span>plist, pl<span class="o">)</span>
-</span><span class='line'>propset <span class="o">(</span>pset, ps<span class="o">)</span>
+</span><span class='line'>propdel (pdel, pd)
+</span><span class='line'>propedit (pedit, pe)
+</span><span class='line'>propget (pget, pg)
+</span><span class='line'>proplist (plist, pl)
+</span><span class='line'>propset (pset, ps)
 </span><span class='line'>relocate
 </span><span class='line'>resolve
 </span><span class='line'>resolved
 </span><span class='line'>revert
-</span><span class='line'>状态：status <span class="o">(</span>stat, st<span class="o">)</span>
-</span><span class='line'>switch <span class="o">(</span>sw<span class="o">)</span>
+</span><span class='line'>状态：status (stat, st)
+</span><span class='line'>switch (sw)
 </span><span class='line'>解锁：unlock
-</span><span class='line'>更新：update <span class="o">(</span>up<span class="o">)</span>
-</span><span class='line'>升级：upgrade
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>更新：update (up)
+</span><span class='line'>升级：upgrade</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>help 帮助信息</h2>
 
-<p>查看全局帮助信息：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>svn <span class="nb">help</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>查看特定命令的帮助信息：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>svn <span class="nb">help</span> &lt;子命令&gt;
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 查看全局帮助信息
+</span><span class='line'>svn help
+</span><span class='line'># 查看特定命令的帮助信息
+</span><span class='line'>svn help &lt;子命令&gt;</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>checkout 检查项目</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>svn checkout svn://localhost/svn
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或者</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>svn co svn://localhost/svn
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svn checkout svn://localhost/svn
+</span><span class='line'>
+</span><span class='line'>svn co svn://localhost/svn</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>commit 提交项目</h2>
 
-<p>提交一个文件：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>svn commit -m <span class="s1">&#39;第一次提交&#39;</span> Test.java
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 提交一个文件
+</span><span class='line'>svn commit -m '第一次提交' Test.java</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>update 更新</h2>
 
 <p>更新当前目录及子目录：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>svn update
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svn update</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -274,6 +268,8 @@ svn -- &hellip;">
         <a class="basic-alignment left" href="/blog/2016/05/17/the-front-end-development-resources/" title="Previous Post: 前端开发资源">&laquo; 前端开发资源</a>
       
       
+        <a class="basic-alignment right" href="/blog/2016/05/18/the-propagation-properties-in-the-spring/" title="Next Post: Spring中的Propagation属性配置">Spring中的Propagation属性配置 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -285,6 +281,10 @@ svn -- &hellip;">
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/05/18/the-propagation-properties-in-the-spring/">Spring中的Propagation属性配置</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/05/18/the-svn-command-summary/">SVN命令汇总</a>

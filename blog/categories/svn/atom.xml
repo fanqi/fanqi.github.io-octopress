@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Svn | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/svn/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-18T08:12:55+08:00</updated>
+  <updated>2016-05-18T11:47:09+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -25,14 +25,14 @@
 <pre><code>svn &lt;子命令&gt; [可选项] [参数]
 </code></pre>
 
-<p>查看版本信息和资源访问信息：
-<code>bash
+<h2>查看版本信息</h2>
+
+<pre><code># 查看版本信息和资源访问信息
 svn --version
-</code>
-仅仅查看版本信息：
-<code>
+
+# 仅仅查看版本信息
 svn --version --quiet
-</code></p>
+</code></pre>
 
 <h2>可用子命令</h2>
 
@@ -76,31 +76,24 @@ switch (sw)
 
 <h2>help 帮助信息</h2>
 
-<p>查看全局帮助信息：
-<code>bash
+<pre><code># 查看全局帮助信息
 svn help
-</code>
-查看特定命令的帮助信息：
-<code>bash
+# 查看特定命令的帮助信息
 svn help &lt;子命令&gt;
-</code></p>
+</code></pre>
 
 <h2>checkout 检查项目</h2>
 
 <pre><code>svn checkout svn://localhost/svn
-</code></pre>
 
-<p>或者
-<code>
 svn co svn://localhost/svn
-</code></p>
+</code></pre>
 
 <h2>commit 提交项目</h2>
 
-<p>提交一个文件：
-<code>
+<pre><code># 提交一个文件
 svn commit -m '第一次提交' Test.java
-</code></p>
+</code></pre>
 
 <h2>update 更新</h2>
 

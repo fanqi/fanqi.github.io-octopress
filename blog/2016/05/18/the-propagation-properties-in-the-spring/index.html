@@ -5,11 +5,16 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>优化Octopress的访问速度 - 范琪的个人博客</title>
+  <title>Spring中的Propagation属性配置 - 范琪的个人博客</title>
   <meta name="author" content="范琪">
 
   
-  <meta name="description" content="今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问： http://fonts.googleapis.com/css?family=PT+Serif:regular, &hellip;">
+  <meta name="description" content="应用场景 1
+2
+3
+4
+5
+&lt;tx:advice id="txadvice" transaction-manager="transactionManager"&gt; &lt;tx:attributes&gt; &lt;tx:method name="*" propagation=" &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.fanqi.xyz/blog/2016/05/13/let-octopress-faster-and-faster/">
+  <link rel="canonical" href="http://www.fanqi.xyz/blog/2016/05/18/the-propagation-properties-in-the-spring/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="范琪的个人博客" type="application/atom+xml">
@@ -69,7 +74,7 @@
   
   <header>
     
-      <h1 class="entry-title">优化Octopress的访问速度</h1>
+      <h1 class="entry-title">Spring中的Propagation属性配置</h1>
     
     
       <p class="meta">
@@ -78,46 +83,35 @@
 
 
 
-<time class='entry-date' datetime='2016-05-13T21:13:29+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:13 pm</span></time>
+<time class='entry-date' datetime='2016-05-18T11:25:34+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:25 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：</p>
-
-<ol>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a></li>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></li>
-</ol>
-
-
-<h2>优化Octopress的访问速度</h2>
-
-<h3>1.使用360网站卫士代理访问Google前端公共库</h3>
-
-<p>调用Google前端公共库的文件是<code>octopress/source/_includes/head.html</code>，将其中的<code>ajax.googleapis.com</code>修改为<code>ajax.useso.com</code>。</p>
-
-<h3>2.使用360网站卫士代理访问Google免费字体库</h3>
-
-<p>调用Google免费字体库的文件是<code>/octopress/source/_includes/custom/head.html</code>，将其中的<code>fonts.googleapis.com</code>修改为：<code>fonts.useso.com</code>。</p>
-
-<h3>3.禁用twitter分享按钮</h3>
-
-<p>在<code>octopress/_config.yml</code>中找到<code>twitter_tweet_button</code>配置项，将<code>true</code>改为<code>false</code>。</p>
-
-<h3>4.重新生成静态博客及部署</h3>
+<div class="entry-content"><h2>应用场景</h2>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
-</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;tx:advice id="txadvice" transaction-manager="transactionManager"&gt;
+</span><span class='line'>    &lt;tx:attributes&gt;
+</span><span class='line'>        &lt;tx:method name="*" propagation="REQUIRED"/&gt;
+</span><span class='line'>    &lt;/tx:attributes&gt;
+</span><span class='line'>&lt;/tx:advice&gt;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>之后我们就可以畅快的访问Octopress博客网站了。</p>
+<p>其中，<code>propagation</code>的属性值有<code>REQUIRED</code>、<code>SUPPORTS</code>、<code>MANDATORY</code>、<code>REQUIRES_NEW</code>、<code>NOT_SUPPORTED</code>、<code>NEVER</code>、<code>NESTED</code>等7种，默认是<code>REQUIRED</code>。
+1. <code>REQUIRED</code>:如果存在一个事务，则支持当前事务;如果没有事务则开启。
+2. <code>SUPPORTS</code>:如果存在一个事务，支持当前事务;如果没有事务，则非事务的执行。
+3. <code>MANDATORY</code>:如果已经存在一个事务，支持当前事务;如果没有一个活动的事务，则抛出异常。
+4. <code>REQUIRES_NEW</code>:总是开启一个新的事务;如果一个事务存在，则将这个存在的事务挂起。
+5. <code>NOT_SUPPORTED</code>:总是非事务地执行;并挂起任何存在的事务。
+6. <code>NEVER</code>:总是非事务地执行，如果存在一个活动事务，则抛出异常。
+7. <code>NESTED</code>:如果一个活动的事务存在，则运行在一个嵌套的事务中，如果没有活动事务，则按<code>REQUIRED</code>属性执行。</p>
 </div>
 
 
@@ -133,12 +127,12 @@
 
 
 
-<time class='entry-date' datetime='2016-05-13T21:13:29+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:13 pm</span></time>
+<time class='entry-date' datetime='2016-05-18T11:25:34+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:25 am</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+    <a class='category' href='/blog/categories/spring/'>spring</a>
   
 </span>
 
@@ -154,10 +148,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2016/05/13/use-octopress-build-static-blog-site/" title="Previous Post: 使用Octopress搭建静态博客网站">&laquo; 使用Octopress搭建静态博客网站</a>
+        <a class="basic-alignment left" href="/blog/2016/05/18/the-svn-command-summary/" title="Previous Post: SVN命令汇总">&laquo; SVN命令汇总</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2016/05/17/the-front-end-development-resources/" title="Next Post: 前端开发资源">前端开发资源 &raquo;</a>
       
     </p>
   </footer>
