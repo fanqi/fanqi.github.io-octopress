@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Svn | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/svn/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-18T07:36:38+08:00</updated>
+  <updated>2016-05-18T07:39:11+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.fanqi.xyz/blog/2016/05/18/the-svn-command-summary/"/>
     <updated>2016-05-18T06:56:57+08:00</updated>
     <id>http://www.fanqi.xyz/blog/2016/05/18/the-svn-command-summary</id>
-    <content type="html"><![CDATA[<p><a href="http://subversion.apache.org/">Subversion</a> 是一个版本控制工具。</p>
+    <content type="html"><![CDATA[<p><a href="http://subversion.apache.org/">Subversion</a> 是一个版本控制工具。Mac自带该软件，但是Mac上好用的客户端软件不多，因此有必要掌握svn的基本命令。</p>
 
 <h2>基本用法</h2>
 
