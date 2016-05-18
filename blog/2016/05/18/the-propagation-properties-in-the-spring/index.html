@@ -104,14 +104,13 @@
 </span><span class='line'>&lt;/tx:advice&gt;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-其中，<code>propagation</code>的属性值有<code>REQUIRED</code>、<code>SUPPORTS</code>、<code>MANDATORY</code>、<code>REQUIRES_NEW</code>、<code>NOT_SUPPORTED</code>、<code>NEVER</code>、<code>NESTED</code>等7种，默认是<code>REQUIRED</code>。<br/>
-1. <code>REQUIRED</code>:如果存在一个事务，则支持当前事务;如果没有事务则开启。
-2. <code>SUPPORTS</code>:如果存在一个事务，支持当前事务;如果没有事务，则非事务的执行。
-3. <code>MANDATORY</code>:如果已经存在一个事务，支持当前事务;如果没有一个活动的事务，则抛出异常。
-4. <code>REQUIRES_NEW</code>:总是开启一个新的事务;如果一个事务存在，则将这个存在的事务挂起。
-5. <code>NOT_SUPPORTED</code>:总是非事务地执行;并挂起任何存在的事务。
-6. <code>NEVER</code>:总是非事务地执行，如果存在一个活动事务，则抛出异常。
+<p>其中，<code>propagation</code>的属性值有<code>REQUIRED</code>、<code>SUPPORTS</code>、<code>MANDATORY</code>、<code>REQUIRES_NEW</code>、<code>NOT_SUPPORTED</code>、<code>NEVER</code>、<code>NESTED</code>等7种，默认是<code>REQUIRED</code>。<br/>
+1. <code>REQUIRED</code>:如果存在一个事务，则支持当前事务;如果没有事务则开启。<br/>
+2. <code>SUPPORTS</code>:如果存在一个事务，支持当前事务;如果没有事务，则非事务的执行。<br/>
+3. <code>MANDATORY</code>:如果已经存在一个事务，支持当前事务;如果没有一个活动的事务，则抛出异常。<br/>
+4. <code>REQUIRES_NEW</code>:总是开启一个新的事务;如果一个事务存在，则将这个存在的事务挂起。<br/>
+5. <code>NOT_SUPPORTED</code>:总是非事务地执行;并挂起任何存在的事务。<br/>
+6. <code>NEVER</code>:总是非事务地执行，如果存在一个活动事务，则抛出异常。<br/>
 7. <code>NESTED</code>:如果一个活动的事务存在，则运行在一个嵌套的事务中，如果没有活动事务，则按<code>REQUIRED</code>属性执行。</p>
 </div>
 
