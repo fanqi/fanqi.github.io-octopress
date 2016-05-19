@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Theme | 范琪的个人博客]]></title>
-  <link href="http://www.fanqi.xyz/blog/categories/theme/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Developer | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/developer/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
   <updated>2016-05-19T13:54:39+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
