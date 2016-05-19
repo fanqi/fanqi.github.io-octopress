@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Developer | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/developer/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-19T13:54:39+08:00</updated>
+  <updated>2016-05-19T13:55:37+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -18,8 +18,8 @@
     <link href="http://www.fanqi.xyz/blog/2016/05/19/editor-themes-for-developers/"/>
     <updated>2016-05-19T13:40:01+08:00</updated>
     <id>http://www.fanqi.xyz/blog/2016/05/19/editor-themes-for-developers</id>
-    <content type="html"><![CDATA[<p>我们程序猿日常工作会使用到大量的IDE以及编辑器，例如sublime、atom、idea、eclipse，如果拥有一套统一的赏心悦目的编辑主题，在一致的字体及样式下工作，无疑能够让我们更愉悦、更高效的工作。
-以下就是我收集的能够在多个应用中使用的主题，排名不分先后。<br/>
+    <content type="html"><![CDATA[<p>我们程序猿日常工作会使用到大量的IDE以及编辑器，例如sublime、atom、idea、eclipse，如果拥有一套统一的赏心悦目的编辑主题，在一致的字体及样式下工作，无疑能够让我们更愉悦、更高效的工作。 <br/>
+以下就是我收集的能够在多个应用中使用的主题，排名不分先后。 <br/>
 1. <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a><br/>
 2. <a href="https://github.com/altercation/solarized">Solarized Theme</a></p>
 ]]></content>
