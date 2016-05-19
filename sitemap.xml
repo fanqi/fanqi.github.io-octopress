@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fanqi.xyz/blog/2016/05/19/mac-shortcuts/</loc>
+<lastmod>2016-05-19T12:38:41+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fanqi.xyz/blog/2016/05/18/the-propagation-properties-in-the-spring/</loc>
 <lastmod>2016-05-18T11:25:34+08:00</lastmod>
 </url>
@@ -40,5 +44,11 @@
 </url>
 <url>
 <loc>http://www.fanqi.xyz/blog/categories/spring/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/mac/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/shortcuts/</loc>
 </url>
 </urlset>

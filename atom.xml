@@ -4,7 +4,7 @@
   <title><![CDATA[范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-19T11:30:44+08:00</updated>
+  <updated>2016-05-19T12:48:55+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -12,6 +12,54 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac快捷键]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/19/mac-shortcuts/"/>
+    <updated>2016-05-19T12:38:41+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/19/mac-shortcuts</id>
+    <content type="html"><![CDATA[<p>cmd+c：复制</p>
+
+<p>cmd+v：粘贴</p>
+
+<p>cmd+a：全选</p>
+
+<p>cmd+delete：删除当前行。选中文件的时候直接删除文件。</p>
+
+<p>shift+方向键：这个在选择文本的时候很有用，可以选择单个字符或者整行，多使用才能找到手感。</p>
+
+<p>cmd+shift+左右方向键：这个可以快速选择当前行，用的也很多。</p>
+
+<p>ctrl+a：跑到当前行的最前端，使用频次很高。</p>
+
+<p>ctrl+e：跑到当前行的最尾端，使用频次很高。</p>
+
+<p>cmd+tab：切换应用，这是大部分人用的最多的方式，却不是最高效的方式，后面会介绍其他方式。</p>
+
+<p>cmd+`: 切换同一应用的窗口，这个非常实用。比如打开多个 xcode 工程的情况下，快速的在不同项目之间切换。 Finder，Firefox等场景下都支持。</p>
+
+<p>cmd+w：关闭当前窗口，后面会介绍其他方式，同样高效。</p>
+
+<p>cmd+q：关闭当前应用。</p>
+
+<p>cmd+n：新建窗口，比如打开新的 Finder 窗口，配合 cmd+w 很实用。</p>
+
+<p>cmd+t：新建 tab，支持 tab 模式的应用一般都支持这个快捷键。比如在safari，firefox，chrome下新建tab。</p>
+
+<p>cmd+i: 显示当前文件的信息，查看文件大小，图片宽高的时候有用。</p>
+
+<p>选中文件按空格预览：预览图片或者 pdf 文件时有用。配合方向键可以快速预览多张图片。</p>
+
+<p>短按电源键：可以关闭屏幕，但不能太短，多按几次就有手感了。</p>
+
+<h2>引用资源</h2>
+
+<ol>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MTMwNDMwODQ0MQ==&amp;mid=2652840418&amp;idx=1&amp;sn=b4c4788f5b3f4380bac380a9ebb34bce&amp;scene=21#wechat_redirect">用 Mac 提升工作效率的 5 种方法</a></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spring中的Propagation属性配置]]></title>
