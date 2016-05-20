@@ -4,7 +4,7 @@
   <title><![CDATA[范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-19T13:55:37+08:00</updated>
+  <updated>2016-05-20T23:13:46+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -12,6 +12,153 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL Command]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/20/mysql-command/"/>
+    <updated>2016-05-20T14:10:01+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/20/mysql-command</id>
+    <content type="html"><![CDATA[<h1>连接数据库</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -u root -p</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>查看帮助信息</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; help</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>MySQL 命令清单</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>?         (\?) Synonym for `help'.
+</span><span class='line'>clear     (\c) Clear the current input statement.
+</span><span class='line'>connect   (\r) Reconnect to the server. Optional arguments are db and host.
+</span><span class='line'>delimiter (\d) Set statement delimiter.
+</span><span class='line'>edit      (\e) Edit command with $EDITOR.
+</span><span class='line'>ego       (\G) Send command to mysql server, display result vertically.
+</span><span class='line'>exit      (\q) Exit mysql. Same as quit.
+</span><span class='line'>go        (\g) Send command to mysql server.
+</span><span class='line'>help      (\h) Display this help.
+</span><span class='line'>nopager   (\n) Disable pager, print to stdout.
+</span><span class='line'>notee     (\t) Don't write into outfile.
+</span><span class='line'>pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+</span><span class='line'>print     (\p) Print current command.
+</span><span class='line'>prompt    (\R) Change your mysql prompt.
+</span><span class='line'>quit      (\q) Quit mysql.
+</span><span class='line'>rehash    (\#) Rebuild completion hash.
+</span><span class='line'>source    (\.) Execute an SQL script file. Takes a file name as an argument.
+</span><span class='line'>status    (\s) Get status information from the server.
+</span><span class='line'>system    (\!) Execute a system shell command.
+</span><span class='line'>tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+</span><span class='line'>use       (\u) Use another database. Takes database name as argument.
+</span><span class='line'>charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+</span><span class='line'>warnings  (\W) Show warnings after every statement.
+</span><span class='line'>nowarning (\w) Don't show warnings after every statement.
+</span><span class='line'>resetconnection(\x) Clean session context.</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>展示数据库</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>show databases;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>选择要使用的数据库</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>use databasename</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>展示数据表</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#
+</span><span class='line'>show tables;
+</span><span class='line'># 模糊查询
+</span><span class='line'>show tables like '%user%';</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>查询表</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>select * from table;
+</span><span class='line'># 格式化输出
+</span><span class='line'>select * from table\g</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在Mac中搭建一个本地svn服务器]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/19/create-a-local-svn-server-in-mac/"/>
+    <updated>2016-05-19T15:15:57+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/19/create-a-local-svn-server-in-mac</id>
+    <content type="html"><![CDATA[<blockquote><p>其实mac中本身就自带了svn服务端，所以创建一个本地的svn服务器就不叫容易。</p></blockquote>
+
+<h2>创建svn服务器的目录，并进入该目录</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svnadmin create /repositories/svnadmin/
+</span><span class='line'>cd /repositories/svnadmin</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>#</h1>
+
+<h2>启动svn server</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svnserve -d -r /repositories/svnadmin</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>停止svn server</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>killall -9 svnserve</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>将server加入启动</h2>
+
+<h2>参考资源</h2>
+
+<ol>
+<li><a href="http://blog.csdn.net/lys07962000/article/details/17917467">http://blog.csdn.net/lys07962000/article/details/17917467</a></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[程序猿专属主题]]></title>

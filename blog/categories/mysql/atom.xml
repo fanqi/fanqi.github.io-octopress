@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mysql | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://www.fanqi.xyz/"/>
+  <updated>2016-05-20T23:13:46+08:00</updated>
+  <id>http://www.fanqi.xyz/</id>
+  <author>
+    <name><![CDATA[范琪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL Command]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/20/mysql-command/"/>
+    <updated>2016-05-20T14:10:01+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/20/mysql-command</id>
+    <content type="html"><![CDATA[<h1>连接数据库</h1>
+
+<pre><code>mysql -u root -p
+</code></pre>
+
+<h2>查看帮助信息</h2>
+
+<pre><code>mysql&gt; help
+</code></pre>
+
+<h2>MySQL 命令清单</h2>
+
+<pre><code>?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+edit      (\e) Edit command with $EDITOR.
+ego       (\G) Send command to mysql server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to mysql server.
+help      (\h) Display this help.
+nopager   (\n) Disable pager, print to stdout.
+notee     (\t) Don't write into outfile.
+pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+resetconnection(\x) Clean session context.
+</code></pre>
+
+<h2>展示数据库</h2>
+
+<pre><code>show databases;
+</code></pre>
+
+<h2>选择要使用的数据库</h2>
+
+<pre><code>use databasename
+</code></pre>
+
+<h2>展示数据表</h2>
+
+<pre><code>#
+show tables;
+# 模糊查询
+show tables like '%user%';
+</code></pre>
+
+<h2>查询表</h2>
+
+<pre><code>select * from table;
+# 格式化输出
+select * from table\g
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

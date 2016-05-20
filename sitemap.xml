@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fanqi.xyz/blog/2016/05/20/mysql-command/</loc>
+<lastmod>2016-05-20T14:10:01+08:00</lastmod>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/2016/05/19/create-a-local-svn-server-in-mac/</loc>
+<lastmod>2016-05-19T15:15:57+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fanqi.xyz/blog/2016/05/19/editor-themes-for-developers/</loc>
 <lastmod>2016-05-19T13:40:01+08:00</lastmod>
 </url>
@@ -60,5 +68,11 @@
 </url>
 <url>
 <loc>http://www.fanqi.xyz/blog/categories/theme/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/server/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/mysql/</loc>
 </url>
 </urlset>
