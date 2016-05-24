@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oracle | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/oracle/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-24T16:03:20+08:00</updated>
+  <updated>2016-05-24T20:56:00+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Oracle常用命令]]></title>
+    <title type="html"><![CDATA[Oracle常用运维命令]]></title>
     <link href="http://www.fanqi.xyz/blog/2016/05/24/oracle-command/"/>
     <updated>2016-05-24T15:45:36+08:00</updated>
     <id>http://www.fanqi.xyz/blog/2016/05/24/oracle-command</id>
@@ -28,47 +28,73 @@
 <pre><code>imp orcl/orcl@orcl  file=d:\orcl.dmp full=y
 </code></pre>
 
-<h2>自动备份脚本（Windows Server版本）</h2>
+<h2>自动备份脚本（Windows Server版本）（待完善自动压缩）</h2>
 
-<p>命名成后缀为.bat的脚本，双击即可执行备份，结合任务计划就能够实现每天自动备份。
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rem if &ldquo;&rdquo;%1"&ldquo;==&rdquo;&ldquo;&rdquo;&ldquo; goto end
-</span><span class='line'>rem if &rdquo;&ldquo;%2&rdquo;&ldquo;==&rdquo;&ldquo;&rdquo;&ldquo; goto end&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;set path=f:\db_bak_lqgt;%path%
-</span><span class='line'>set now=%Date:~0,10%
-</span><span class='line'>exp orcl/orcl@orcl file=f:\db_bak_orcl\orcl&lt;em&gt;%now%.dmp log=f:\db_bak_orcl\orcl&lt;/em&gt;%now%.log buffer=1024000&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;echo file in %1.dmp,%1.log
-</span><span class='line'>rem pause&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;for /f &ldquo;skip=30&rdquo; %%i in (&lsquo;dir *.log /tc /o-d /b&rsquo;) do del %%i&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;for /f &ldquo;skip=30&rdquo; %%i in (&lsquo;dir *.dmp /tc /o-d /b&rsquo;) do del %%i&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;exit&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;:end
-</span><span class='line'>echo 参数必须指定
-</span><span class='line'>pause</span></code></pre></td></tr></table></div></figure></p>
+<p>命名成后缀为.bat的脚本，双击即可执行备份，结合任务计划就能够实现每天自动备份。</p>
+
+<pre><code>rem if ""%1""=="""" goto end
+rem if ""%2""=="""" goto end
+
+set path=f:\db_bak_lqgt;%path%
+set now=%Date:~0,10%
+exp orcl/orcl@orcl file=f:\db_bak_orcl\orcl_%now%.dmp log=f:\db_bak_orcl\orcl_%now%.log buffer=1024000
+
+echo file in %1.dmp,%1.log
+rem pause
+
+for /f "skip=30" %%i in ('dir *.log /tc /o-d /b') do del %%i
+
+for /f "skip=30" %%i in ('dir *.dmp /tc /o-d /b') do del %%i
+
+exit
+
+:end
+echo 参数必须指定
+pause
+</code></pre>
+
+<h2>批量删除当前用户所有表</h2>
+
+<pre><code class="SQL">SELECT 'drop table '||table_name||';' FROM USER_TABLES ORDER BY TABLE_NAME;
+</code></pre>
+
+<h2>不登陆启动sqlplus</h2>
+
+<p>sqlplus /nolog</p>
+
+<h2>使用系统用户连接数据库（只能在服务器使用）</h2>
+
+<p>conn /as sysdba;</p>
+
+<h2>查看表空间使用情况</h2>
+
+<pre><code class="SQL">SELECT
+  SUM(bytes) / (1024 * 1024)  "M free_space",
+  tablespace_name
+FROM dba_free_space
+GROUP BY tablespace_name;
+
+SELECT
+  a.tablespace_name,
+  round(a.bytes  / (1024 * 1024),2)  "M TOTAL",
+  round(b.bytes  / (1024 * 1024),2)  "M USED",
+  round(c.bytes  / (1024 * 1024),2)  "M FREE",
+  round((b.bytes * 100) / a.bytes,2) "% USED",
+  round((c.bytes * 100) / a.bytes,2) "% FREE"
+FROM sys.sm$ts_avail a, sys.sm$ts_used b, sys.sm$ts_free c
+WHERE a.tablespace_name = b.tablespace_name
+      AND a.tablespace_name = c.tablespace_name;
+</code></pre>
+
+<h2>增加表空间数据文件（注意重新命名数据文件）</h2>
+
+<pre><code class="SQL">ALTER TABLESPACE SYSTEM
+ADD DATAFILE 'D:\oradata\orcl\SYSTEM02.DBF'
+SIZE 512m
+AUTOEXTEND ON
+NEXT 512m
+MAXSIZE 4096m;
+</code></pre>
 ]]></content>
   </entry>
   

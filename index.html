@@ -11,7 +11,7 @@
   
   <meta name="description" content="导出数据 1
 exp orcl/orcl@orcl file=d:\orcl.dmp log=d:\orcl.log 导入数据 1
-imp orcl/orcl@orcl file=d:\orcl.dmp full=y 自动备份脚本（Windows Server版本） 命名成后缀为.bat的脚本， &hellip;">
+imp orcl/orcl@orcl file=d:\orcl.dmp full=y 自动备份脚本（Windows Server版本）（待完善自动压缩） 命名成后缀为 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,7 +74,7 @@ imp orcl/orcl@orcl file=d:\orcl.dmp full=y 自动备份脚本（Windows Server�
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2016/05/24/oracle-command/">Oracle常用命令</a></h1>
+      <h1 class="entry-title"><a href="/blog/2016/05/24/oracle-command/">Oracle常用运维命令</a></h1>
     
     
       <p class="meta">
@@ -102,7 +102,7 @@ imp orcl/orcl@orcl file=d:\orcl.dmp full=y 自动备份脚本（Windows Server�
 </pre></td><td class='code'><pre><code class=''><span class='line'>imp orcl/orcl@orcl  file=d:\orcl.dmp full=y</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>自动备份脚本（Windows Server版本）</h2>
+<h2>自动备份脚本（Windows Server版本）（待完善自动压缩）</h2>
 
 <p>命名成后缀为.bat的脚本，双击即可执行备份，结合任务计划就能够实现每天自动备份。</p>
 
@@ -144,6 +144,75 @@ imp orcl/orcl@orcl file=d:\orcl.dmp full=y 自动备份脚本（Windows Server�
 </span><span class='line'>:end
 </span><span class='line'>echo 参数必须指定
 </span><span class='line'>pause</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>批量删除当前用户所有表</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='SQL'><span class='line'><span class="k">SELECT</span> <span class="s1">&#39;drop table &#39;</span><span class="o">||</span><span class="k">table_name</span><span class="o">||</span><span class="s1">&#39;;&#39;</span> <span class="k">FROM</span> <span class="n">USER_TABLES</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">TABLE_NAME</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>不登陆启动sqlplus</h2>
+
+<p>sqlplus /nolog</p>
+
+<h2>使用系统用户连接数据库（只能在服务器使用）</h2>
+
+<p>conn /as sysdba;</p>
+
+<h2>查看表空间使用情况</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='SQL'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'>  <span class="k">SUM</span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span>  <span class="ss">&quot;M free_space&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">tablespace_name</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">dba_free_space</span>
+</span><span class='line'><span class="k">GROUP</span> <span class="k">BY</span> <span class="n">tablespace_name</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">SELECT</span>
+</span><span class='line'>  <span class="n">a</span><span class="p">.</span><span class="n">tablespace_name</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">round</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">bytes</span>  <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>  <span class="ss">&quot;M TOTAL&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">round</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">bytes</span>  <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>  <span class="ss">&quot;M USED&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">round</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">bytes</span>  <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>  <span class="ss">&quot;M FREE&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">round</span><span class="p">((</span><span class="n">b</span><span class="p">.</span><span class="n">bytes</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span><span class="p">.</span><span class="n">bytes</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="ss">&quot;% USED&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">round</span><span class="p">((</span><span class="k">c</span><span class="p">.</span><span class="n">bytes</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span><span class="p">.</span><span class="n">bytes</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="ss">&quot;% FREE&quot;</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">sys</span><span class="p">.</span><span class="n">sm</span><span class="err">$</span><span class="n">ts_avail</span> <span class="n">a</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">sm</span><span class="err">$</span><span class="n">ts_used</span> <span class="n">b</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">sm</span><span class="err">$</span><span class="n">ts_free</span> <span class="k">c</span>
+</span><span class='line'><span class="k">WHERE</span> <span class="n">a</span><span class="p">.</span><span class="n">tablespace_name</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">tablespace_name</span>
+</span><span class='line'>      <span class="k">AND</span> <span class="n">a</span><span class="p">.</span><span class="n">tablespace_name</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">tablespace_name</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>增加表空间数据文件（注意重新命名数据文件）</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='SQL'><span class='line'><span class="k">ALTER</span> <span class="n">TABLESPACE</span> <span class="k">SYSTEM</span>
+</span><span class='line'><span class="k">ADD</span> <span class="n">DATAFILE</span> <span class="s1">&#39;D:\oradata\orcl\SYSTEM02.DBF&#39;</span>
+</span><span class='line'><span class="k">SIZE</span> <span class="mi">512</span><span class="n">m</span>
+</span><span class='line'><span class="n">AUTOEXTEND</span> <span class="k">ON</span>
+</span><span class='line'><span class="k">NEXT</span> <span class="mi">512</span><span class="n">m</span>
+</span><span class='line'><span class="n">MAXSIZE</span> <span class="mi">4096</span><span class="n">m</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
   
@@ -1067,7 +1136,7 @@ DataSyncManager.java</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2016/05/24/oracle-command/">Oracle常用命令</a>
+        <a href="/blog/2016/05/24/oracle-command/">Oracle常用运维命令</a>
       </li>
     
       <li class="post">
