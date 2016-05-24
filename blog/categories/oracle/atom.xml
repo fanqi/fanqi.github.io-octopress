@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Oracle | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/oracle/atom.xml" rel="self"/>
+  <link href="http://www.fanqi.xyz/"/>
+  <updated>2016-05-24T16:00:49+08:00</updated>
+  <id>http://www.fanqi.xyz/</id>
+  <author>
+    <name><![CDATA[范琪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Oracle常用命令]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/24/oracle-command/"/>
+    <updated>2016-05-24T15:45:36+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/24/oracle-command</id>
+    <content type="html"><![CDATA[<h2>导出数据</h2>
+
+<pre><code>exp orcl/orcl@orcl file=d:\orcl.dmp log=d:\orcl.log
+</code></pre>
+
+<h2>导入数据</h2>
+
+<pre><code>imp orcl/orcl@orcl  file=d:\orcl.dmp full=y
+</code></pre>
+
+<h2>自动备份脚本（Windows Server版本）</h2>
+
+<p>命名成后缀为.bat的脚本，双击即可执行备份，结合任务计划就能够实现每天自动备份。
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rem if &ldquo;&rdquo;%1"&ldquo;==&rdquo;&ldquo;&rdquo;&ldquo; goto end
+</span><span class='line'>rem if &rdquo;&ldquo;%2&rdquo;&ldquo;==&rdquo;&ldquo;&rdquo;&ldquo; goto end&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;set path=f:\db_bak_lqgt;%path%
+</span><span class='line'>set now=%Date:~0,10%
+</span><span class='line'>exp orcl/orcl@orcl file=f:\db_bak_orcl\orcl&lt;em&gt;%now%.dmp log=f:\db_bak_orcl\orcl&lt;/em&gt;%now%.log buffer=1024000&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;echo file in %1.dmp,%1.log
+</span><span class='line'>rem pause&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;for /f &ldquo;skip=30&rdquo; %%i in (&lsquo;dir *.log /tc /o-d /b&rsquo;) do del %%i&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;for /f &ldquo;skip=30&rdquo; %%i in (&lsquo;dir *.dmp /tc /o-d /b&rsquo;) do del %%i&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;exit&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;:end
+</span><span class='line'>echo 参数必须指定
+</span><span class='line'>pause</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+</feed>
