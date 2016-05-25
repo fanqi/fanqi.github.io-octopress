@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fanqi.xyz/blog/2016/05/25/liferay-portlet-lifecycle/</loc>
+<lastmod>2016-05-25T09:02:46+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fanqi.xyz/blog/2016/05/24/oracle-command/</loc>
 <lastmod>2016-05-24T15:45:36+08:00</lastmod>
 </url>
@@ -81,5 +85,14 @@
 </url>
 <url>
 <loc>http://www.fanqi.xyz/blog/categories/oracle/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/liferay/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/liferay-ce-6-dot-2-5/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/liferay-ce-6-dot-2-ga6/</loc>
 </url>
 </urlset>

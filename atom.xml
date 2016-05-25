@@ -4,7 +4,7 @@
   <title><![CDATA[范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-24T20:56:00+08:00</updated>
+  <updated>2016-05-25T11:00:30+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -12,6 +12,282 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Liferay Portlet 生命周期]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/25/liferay-portlet-lifecycle/"/>
+    <updated>2016-05-25T09:02:46+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/25/liferay-portlet-lifecycle</id>
+    <content type="html"><![CDATA[<h2>概述</h2>
+
+<p>了解portlet的生命周期，对于liferay portlet开发者来说是一个基本的要求。
+portlet的生命周期分为六个阶段：<br/>
+1. init
+1. render
+1. processAction
+1. processEvent
+1. serveResource
+1. destroy</p>
+
+<h2>生命周期示例代码</h2>
+
+<p>view.jsp</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet"%&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;portlet:defineObjects /&gt;
+</span><span class='line'>
+</span><span class='line'>This is the
+</span><span class='line'>&lt;b&gt;Lifecycle&lt;/b&gt;
+</span><span class='line'>portlet in View mode.
+</span><span class='line'>&lt;br&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;portlet:renderURL var="viewURL" /&gt;
+</span><span class='line'>&lt;a href="&lt;%=viewURL%&gt;"&gt;viewURL&lt;/a&gt;
+</span><span class='line'>&lt;br&gt;
+</span><span class='line'>&lt;portlet:actionURL var="actionURL" name="doAction"&gt;&lt;/portlet:actionURL&gt;
+</span><span class='line'>&lt;a href="&lt;%=actionURL%&gt;"&gt;actionURL&lt;/a&gt;
+</span><span class='line'>&lt;br&gt;
+</span><span class='line'>&lt;portlet:resourceURL var="resourceURL" /&gt;
+</span><span class='line'>&lt;a href="&lt;%=resourceURL%&gt;"&gt;resourceURL&lt;/a&gt;
+</span><span class='line'>&lt;br&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>LifecyclePortlet.java</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LifecyclePortlet</span> <span class="kd">extends</span> <span class="n">MVCPortlet</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">PortletException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Lifecycle Phase (MVCPortlet) : init&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">.</span><span class="na">init</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">PortletConfig</span> <span class="n">config</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">PortletException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Lifecycle Phase (GenericPortlet) : init&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">render</span><span class="o">(</span><span class="n">RenderRequest</span> <span class="n">arg0</span><span class="o">,</span> <span class="n">RenderResponse</span> <span class="n">arg1</span><span class="o">)</span>
+</span><span class='line'>          <span class="kd">throws</span> <span class="n">PortletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Lifecycle Phase: render&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">.</span><span class="na">render</span><span class="o">(</span><span class="n">arg0</span><span class="o">,</span> <span class="n">arg1</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processAction</span><span class="o">(</span><span class="n">ActionRequest</span> <span class="n">actionRequest</span><span class="o">,</span>
+</span><span class='line'>          <span class="n">ActionResponse</span> <span class="n">actionResponse</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">PortletException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Lifecycle Phase: processAction&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">.</span><span class="na">processAction</span><span class="o">(</span><span class="n">actionRequest</span><span class="o">,</span> <span class="n">actionResponse</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doAction</span><span class="o">(</span><span class="n">ActionRequest</span> <span class="n">actionRequest</span><span class="o">,</span>
+</span><span class='line'>          <span class="n">ActionResponse</span> <span class="n">actionResponse</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">PortletException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;LifecyclePortlet: doAction&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processEvent</span><span class="o">(</span><span class="n">EventRequest</span> <span class="n">arg0</span><span class="o">,</span> <span class="n">EventResponse</span> <span class="n">arg1</span><span class="o">)</span>
+</span><span class='line'>          <span class="kd">throws</span> <span class="n">PortletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Lifecycle Phase: processEvent&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">.</span><span class="na">processEvent</span><span class="o">(</span><span class="n">arg0</span><span class="o">,</span> <span class="n">arg1</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">serveResource</span><span class="o">(</span><span class="n">ResourceRequest</span> <span class="n">resourceRequest</span><span class="o">,</span>
+</span><span class='line'>          <span class="n">ResourceResponse</span> <span class="n">resourceResponse</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span>
+</span><span class='line'>          <span class="n">PortletException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Lifecycle Phase: serveResource&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">resourceResponse</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&quot;text/html;charset=UTF-8&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">PrintWriter</span> <span class="n">out</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">out</span> <span class="o">=</span> <span class="n">resourceResponse</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="s">&quot;serveResource&quot;</span><span class="o">;</span>
+</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">.</span><span class="na">serveResource</span><span class="o">(</span><span class="n">resourceRequest</span><span class="o">,</span> <span class="n">resourceResponse</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroy</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Lifecycle Phase (GenericPortlet) : destroy&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">.</span><span class="na">destroy</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>init</h2>
+
+<p>一个portlet在portlet容器中被部署及实例化的时候，就会调用init方法，该方法在portlet生命周期中仅仅只会被调用一次。<br/>
+init阶段对应init()和init(PortletConfig config)两个实现方法，这两个方法分别定义在MVCPortlet和GenericPortlet，而GenericPortlet是MVCPortlet的父类，因此init(PortletConfig config)方法先执行。<br/>
+init执行如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="mi">00</span><span class="o">:</span><span class="mi">58</span><span class="o">:</span><span class="mi">09</span><span class="o">,</span><span class="mi">934</span> <span class="n">INFO</span>  <span class="o">[</span><span class="n">localhost</span><span class="o">-</span><span class="n">startStop</span><span class="o">-</span><span class="mi">7</span><span class="o">][</span><span class="nl">PortletHotDeployListener:</span><span class="mi">344</span><span class="o">]</span> <span class="n">Registering</span> <span class="n">portlets</span> <span class="k">for</span> <span class="n">lportal</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="mf">6.2</span><span class="o">.</span><span class="mi">5</span><span class="o">-</span><span class="n">lifecycle</span><span class="o">-</span><span class="n">portlet</span>
+</span><span class='line'><span class="n">Lifecycle</span> <span class="nf">Phase</span> <span class="o">(</span><span class="n">GenericPortlet</span><span class="o">)</span> <span class="o">:</span> <span class="n">init</span>
+</span><span class='line'><span class="n">Lifecycle</span> <span class="nf">Phase</span> <span class="o">(</span><span class="n">MVCPortlet</span><span class="o">)</span> <span class="o">:</span> <span class="n">init</span>
+</span><span class='line'><span class="mi">00</span><span class="o">:</span><span class="mi">58</span><span class="o">:</span><span class="mi">09</span><span class="o">,</span><span class="mi">964</span> <span class="n">INFO</span>  <span class="o">[</span><span class="n">localhost</span><span class="o">-</span><span class="n">startStop</span><span class="o">-</span><span class="mi">7</span><span class="o">][</span><span class="nl">PortletHotDeployListener:</span><span class="mi">492</span><span class="o">]</span> <span class="mi">1</span> <span class="n">portlet</span> <span class="k">for</span> <span class="n">lportal</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="mf">6.2</span><span class="o">.</span><span class="mi">5</span><span class="o">-</span><span class="n">lifecycle</span><span class="o">-</span><span class="n">portlet</span> <span class="n">is</span> <span class="n">available</span> <span class="k">for</span> <span class="n">use</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>render</h2>
+
+<p>在portal页面中显示portlet的内容，就会调用render方法。<br/>
+render方法就是负责生成portlethtml内容。<br/>
+也可以通过renderURL来调用render方法加载不同的网页内容。
+在portlet的生命周期中，render方法应该是被调用次数最多的。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Lifecycle</span> <span class="nf">Phase</span> <span class="o">(</span><span class="n">GenericPortle</span><span class="o">)</span> <span class="o">:</span> <span class="n">render</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. processAction</h2>
+
+<p>当有任何action执行的时候，processAction都被先调用。
+例如通过actionURL向后台action方法提交表单数据，就会先触发processAction。
+在portlet的生命周期中，processAction方法能够被多次调用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Lifecycle</span> <span class="nf">Phase</span> <span class="o">(</span><span class="n">MVCPortlet</span><span class="o">)</span> <span class="o">:</span> <span class="n">processAction</span>
+</span><span class='line'><span class="nl">LifecyclePortlet:</span> <span class="n">doAction</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>processEvent</h2>
+
+<p>当任何时间被触发的时候，就会调用processEvent方法。</p>
+
+<h2>serveResource</h2>
+
+<p>通过serveResource方法，能够获取portlet提供的服务端资源，包括html、json、xml等。<br/>
+在jsp中我们能够通过请求resourceURL，来调用serveResource方法。<br/>
+ajax也能够和resourceURL结合使用。<br/>
+在portlet的生命周期中，serveResource能够被多次调用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Lifecycle</span> <span class="nf">Phase</span> <span class="o">(</span><span class="n">MVCPortlet</span><span class="o">)</span> <span class="o">:</span> <span class="n">serveResource</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>destroy</h2>
+
+<p>当卸载一个portlet的时候，就会调用它的destroy方法。
+在portlet的生命周期中，destroy方法只会被执行一次。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="mi">01</span><span class="o">:</span><span class="mi">35</span><span class="o">:</span><span class="mi">10</span><span class="o">,</span><span class="mi">248</span> <span class="n">INFO</span>  <span class="o">[</span><span class="n">ContainerBackgroundProcessor</span><span class="o">[</span><span class="n">StandardEngine</span><span class="o">[</span><span class="n">Catalina</span><span class="o">]]][</span><span class="nl">PortletHotDeployListener:</span><span class="mi">525</span><span class="o">]</span> <span class="n">Unregistering</span> <span class="n">portlets</span> <span class="k">for</span> <span class="n">lportal</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="mf">6.2</span><span class="o">.</span><span class="mi">5</span><span class="o">-</span><span class="n">demo</span><span class="o">-</span><span class="n">portlet</span>
+</span><span class='line'><span class="n">Lifecycle</span> <span class="nf">Phase</span> <span class="o">(</span><span class="n">GenericPortlet</span><span class="o">)</span> <span class="o">:</span> <span class="n">destroy</span>
+</span><span class='line'><span class="mi">01</span><span class="o">:</span><span class="mi">35</span><span class="o">:</span><span class="mi">10</span><span class="o">,</span><span class="mi">250</span> <span class="n">INFO</span>  <span class="o">[</span><span class="n">ContainerBackgroundProcessor</span><span class="o">[</span><span class="n">StandardEngine</span><span class="o">[</span><span class="n">Catalina</span><span class="o">]]][</span><span class="nl">PortletHotDeployListener:</span><span class="mi">560</span><span class="o">]</span> <span class="mi">1</span> <span class="n">portlet</span> <span class="k">for</span> <span class="n">lportal</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="mf">6.2</span><span class="o">.</span><span class="mi">5</span><span class="o">-</span><span class="n">lifecycle</span><span class="o">-</span><span class="n">portlet</span> <span class="n">was</span> <span class="n">unregistered</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>参考资源</h2>
+
+<ol>
+<li><a href="http://liferaytutorial.blogspot.com/2013/04/portlet-lifecycle.html">http://liferaytutorial.blogspot.com/2013/04/portlet-lifecycle.html</a></li>
+<li><a href="http://www.opensource-techblog.com/2014/12/introduction-to-portlet-phases-and.html">http://www.opensource-techblog.com/2014/12/introduction-to-portlet-phases-and.html</a></li>
+<li><a href="http://proliferay.com/jsr-286-portlet-life-cycle/">http://proliferay.com/jsr-286-portlet-life-cycle/</a></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Oracle常用运维命令]]></title>
