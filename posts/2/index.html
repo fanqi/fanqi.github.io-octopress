@@ -9,7 +9,14 @@
   <meta name="author" content="范琪">
 
   
-  <meta name="description" content="Octopress 介绍 Octopress is a blogging framework for hackers. 如官网说的一样，Octopress是一个为黑客而生的博客框架，比较适合有一定shell和git命令基础，同时又喜欢折腾、热爱分享的童鞋， &hellip;">
+  <meta name="description" content="Subversion 是一个版本控制工具。Mac自带该软件，但是Mac上好用的客户端软件不多，因此有必要掌握svn的基本命令。 基本用法 1
+svn &lt;子命令&gt; [可选项] [参数] 查看版本信息 1
+2
+3
+4
+5
+# 查看版本信息和资源访问信息
+svn --version # &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +73,289 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/05/18/the-svn-command-summary/">SVN命令汇总</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-18T06:56:57+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>6:56 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://subversion.apache.org/">Subversion</a> 是一个版本控制工具。Mac自带该软件，但是Mac上好用的客户端软件不多，因此有必要掌握svn的基本命令。</p>
+
+<h2>基本用法</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svn &lt;子命令&gt; [可选项] [参数]</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h2>查看版本信息</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 查看版本信息和资源访问信息
+</span><span class='line'>svn --version
+</span><span class='line'>
+</span><span class='line'># 仅仅查看版本信息
+</span><span class='line'>svn --version --quiet</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>可用子命令</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>添加：add
+</span><span class='line'>blame (praise, annotate, ann)
+</span><span class='line'>cat
+</span><span class='line'>changelist (cl)
+</span><span class='line'>检出：checkout (co)
+</span><span class='line'>清理：cleanup
+</span><span class='line'>提交：commit (ci)
+</span><span class='line'>复制：copy (cp)
+</span><span class='line'>删除：delete (del, remove, rm)
+</span><span class='line'>diff (di)
+</span><span class='line'>导出：export
+</span><span class='line'>帮助：help (?, h)
+</span><span class='line'>导入：import
+</span><span class='line'>信息：info
+</span><span class='line'>列表：list (ls)
+</span><span class='line'>锁定：lock
+</span><span class='line'>日志：log
+</span><span class='line'>合并：merge
+</span><span class='line'>合并信息：mergeinfo
+</span><span class='line'>创建文件夹：mkdir
+</span><span class='line'>移动：move (mv, rename, ren)
+</span><span class='line'>patch
+</span><span class='line'>propdel (pdel, pd)
+</span><span class='line'>propedit (pedit, pe)
+</span><span class='line'>propget (pget, pg)
+</span><span class='line'>proplist (plist, pl)
+</span><span class='line'>propset (pset, ps)
+</span><span class='line'>relocate
+</span><span class='line'>resolve
+</span><span class='line'>resolved
+</span><span class='line'>revert
+</span><span class='line'>状态：status (stat, st)
+</span><span class='line'>switch (sw)
+</span><span class='line'>解锁：unlock
+</span><span class='line'>更新：update (up)
+</span><span class='line'>升级：upgrade</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>help 帮助信息</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 查看全局帮助信息
+</span><span class='line'>svn help
+</span><span class='line'># 查看特定命令的帮助信息
+</span><span class='line'>svn help &lt;子命令&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>checkout 检查项目</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svn checkout svn://localhost/svn
+</span><span class='line'>
+</span><span class='line'>svn co svn://localhost/svn</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>commit 提交项目</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 提交一个文件
+</span><span class='line'>svn commit -m '第一次提交' Test.java</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>update 更新</h2>
+
+<p>更新当前目录及子目录：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svn update</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/05/17/the-front-end-development-resources/">前端开发资源</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-17T12:44:30+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>12:44 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>工具篇</h2>
+
+<h2>JSLint</h2>
+
+<p>检查JavaScript正确性。</p>
+
+<h2>All JS</h2>
+
+<p>展示网页中的所有JS</p>
+
+<h2>All JS Beautified</h2>
+
+<p>美化网页中的所有JS，加强可读性</p>
+
+<h2>All JS Minified</h2>
+
+<p>压缩网页中所有的JS，删除换行符、空格等</p>
+
+<h2>All CSS</h2>
+
+<p>展示网页中的所有CSS</p>
+
+<h2>YUI CSS Compressor</h2>
+
+<p>压缩CSS</p>
+
+<h2>All Smush.it</h2>
+
+<p>优化压缩图片</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/05/13/let-octopress-faster-and-faster/">优化Octopress的访问速度</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-13T21:13:29+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:13 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：</p>
+
+<ol>
+<li><a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a></li>
+<li><a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a></li>
+<li><a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a></li>
+<li><a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></li>
+</ol>
+
+
+<h2>优化Octopress的访问速度</h2>
+
+<h3>1.使用360网站卫士代理访问Google前端公共库</h3>
+
+<p>调用Google前端公共库的文件是<code>octopress/source/_includes/head.html</code>，将其中的<code>ajax.googleapis.com</code>修改为<code>ajax.useso.com</code>。</p>
+
+<h3>2.使用360网站卫士代理访问Google免费字体库</h3>
+
+<p>调用Google免费字体库的文件是<code>/octopress/source/_includes/custom/head.html</code>，将其中的<code>fonts.googleapis.com</code>修改为：<code>fonts.useso.com</code>。</p>
+
+<h3>3.禁用twitter分享按钮</h3>
+
+<p>在<code>octopress/_config.yml</code>中找到<code>twitter_tweet_button</code>配置项，将<code>true</code>改为<code>false</code>。</p>
+
+<h3>4.重新生成静态博客及部署</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
+</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p>之后我们就可以畅快的访问Octopress博客网站了。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -258,23 +548,23 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/05/26/modify-the-system-users-password-in-oracle-11g/">重置oracle 11g中sys用户的密码</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/05/26/eclipse-tips/">Eclipse技巧</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/05/25/liferay-internationalization/">Liferay 国际化</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/05/25/liferay-portlet-lifecycle/">Liferay Portlet 生命周期</a>
       </li>
     
       <li class="post">
         <a href="/blog/2016/05/24/oracle-command/">Oracle常用运维命令</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/05/20/mysql-command/">MySQL常用命令</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/05/19/create-a-local-svn-server-in-mac/">在Mac中搭建一个本地svn服务器</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/05/19/editor-themes-for-developers/">程序猿专属主题</a>
       </li>
     
   </ul>

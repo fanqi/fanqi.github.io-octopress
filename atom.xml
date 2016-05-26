@@ -4,7 +4,7 @@
   <title><![CDATA[范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-25T11:13:16+08:00</updated>
+  <updated>2016-05-26T13:27:59+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -12,6 +12,105 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[重置oracle 11g中sys用户的密码]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/26/modify-the-system-users-password-in-oracle-11g/"/>
+    <updated>2016-05-26T12:41:48+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/26/modify-the-system-users-password-in-oracle-11g</id>
+    <content type="html"><![CDATA[<p>重置oracle 11g中sys用户的密码的步骤如下： <br/>
+1. 登录oracle服务器，并启动命令提示符窗口
+2. 输入'sqlplus / as sysdba'，通过服务器认证连接oracle
+3. 输入修改密码的指令'alter user sys identified by password'，其中password为修改后的密码。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Microsoft Windows [版本 6.1.7601]
+</span><span class='line'>版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+</span><span class='line'>
+</span><span class='line'>C:\Users\Administrator&gt;sqlplus / as sysdba;
+</span><span class='line'>
+</span><span class='line'>SQL*Plus: Release 11.2.0.1.0 Production on 星期四 5月 26 12:55:36 2016
+</span><span class='line'>
+</span><span class='line'>Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>连接到:
+</span><span class='line'>Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+</span><span class='line'>With the Partitioning, OLAP, Data Mining and Real Application Testing options
+</span><span class='line'>
+</span><span class='line'>SQL&gt; alter user sys identified by orcl;
+</span><span class='line'>
+</span><span class='line'>用户已更改。
+</span><span class='line'>
+</span><span class='line'>SQL&gt; exit
+</span><span class='line'>从 Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+</span><span class='line'>With the Partitioning, OLAP, Data Mining and Real Application Testing options 断
+</span><span class='line'>开</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse技巧]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/26/eclipse-tips/"/>
+    <updated>2016-05-26T09:27:04+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/26/eclipse-tips</id>
+    <content type="html"><![CDATA[<h2>批量覆盖父类方法</h2>
+
+<ul>
+<li>菜单选项：Source > Override/Implement Methods</li>
+<li>mac快捷键：option+command+s</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Liferay 国际化]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/25/liferay-internationalization/"/>
+    <updated>2016-05-25T11:13:57+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/25/liferay-internationalization</id>
+    <content type="html"><![CDATA[<h2>概述</h2>
+
+<p>Liferay默认支持国际化，也提供了一套完成的国际化方法。</p>
+
+<h2>给portlet添加国际化支持</h2>
+
+<p>在portlet.xml中，找到需要国际化的portlet，在<code>portlet-info</code>子节点前面，增加以下配置：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;resource-bundle&gt;</span>content.Language<span class="nt">&lt;/resource-bundle&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>创建国际化资源文件</h2>
+
+<p>在当前插件工程的
+创建一个默认的Language.properties
+创建一个中国的国际化资源文件Language_zh_CN.properties，其中zh_CN代表的就是中国。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Liferay Portlet 生命周期]]></title>
@@ -29,7 +128,7 @@ portlet的生命周期分为六个阶段：<br/>
 1. serveResource
 1. destroy</p>
 
-<h2>生命周期示例代码</h2>
+<h2>示例代码</h2>
 
 <p>view.jsp</p>
 

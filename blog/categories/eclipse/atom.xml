@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Eclipse | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/eclipse/atom.xml" rel="self"/>
+  <link href="http://www.fanqi.xyz/"/>
+  <updated>2016-05-26T13:27:59+08:00</updated>
+  <id>http://www.fanqi.xyz/</id>
+  <author>
+    <name><![CDATA[范琪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse技巧]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/26/eclipse-tips/"/>
+    <updated>2016-05-26T09:27:04+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/26/eclipse-tips</id>
+    <content type="html"><![CDATA[<h2>批量覆盖父类方法</h2>
+
+<ul>
+<li>菜单选项：Source > Override/Implement Methods</li>
+<li>mac快捷键：option+command+s</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

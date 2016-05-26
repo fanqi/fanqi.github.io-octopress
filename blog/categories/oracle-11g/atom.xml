@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Oracle 11g | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/oracle-11g/atom.xml" rel="self"/>
+  <link href="http://www.fanqi.xyz/"/>
+  <updated>2016-05-26T13:27:59+08:00</updated>
+  <id>http://www.fanqi.xyz/</id>
+  <author>
+    <name><![CDATA[范琪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[重置oracle 11g中sys用户的密码]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/26/modify-the-system-users-password-in-oracle-11g/"/>
+    <updated>2016-05-26T12:41:48+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/26/modify-the-system-users-password-in-oracle-11g</id>
+    <content type="html"><![CDATA[<p>重置oracle 11g中sys用户的密码的步骤如下： <br/>
+1. 登录oracle服务器，并启动命令提示符窗口
+2. 输入'sqlplus / as sysdba'，通过服务器认证连接oracle
+3. 输入修改密码的指令'alter user sys identified by password'，其中password为修改后的密码。</p>
+
+<pre><code>Microsoft Windows [版本 6.1.7601]
+版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator&gt;sqlplus / as sysdba;
+
+SQL*Plus: Release 11.2.0.1.0 Production on 星期四 5月 26 12:55:36 2016
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+连接到:
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL&gt; alter user sys identified by orcl;
+
+用户已更改。
+
+SQL&gt; exit
+从 Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options 断
+开
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
