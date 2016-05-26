@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oracle 11g | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/oracle-11g/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-26T13:27:59+08:00</updated>
+  <updated>2016-05-26T13:34:27+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -19,8 +19,8 @@
     <updated>2016-05-26T12:41:48+08:00</updated>
     <id>http://www.fanqi.xyz/blog/2016/05/26/modify-the-system-users-password-in-oracle-11g</id>
     <content type="html"><![CDATA[<p>重置oracle 11g中sys用户的密码的步骤如下： <br/>
-1. 登录oracle服务器，并启动命令提示符窗口
-2. 输入'sqlplus / as sysdba'，通过服务器认证连接oracle
+1. 登录oracle服务器，并启动命令提示符窗口<br/>
+2. 输入'sqlplus / as sysdba'，通过服务器认证连接oracle<br/>
 3. 输入修改密码的指令'alter user sys identified by password'，其中password为修改后的密码。</p>
 
 <pre><code>Microsoft Windows [版本 6.1.7601]
