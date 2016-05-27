@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fanqi.xyz/blog/2016/05/27/git-commands/</loc>
+<lastmod>2016-05-27T13:15:36+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fanqi.xyz/blog/2016/05/27/ssh-no-password/</loc>
 <lastmod>2016-05-27T09:51:47+08:00</lastmod>
 </url>
@@ -118,5 +122,8 @@
 </url>
 <url>
 <loc>http://www.fanqi.xyz/blog/categories/mac/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/git/</loc>
 </url>
 </urlset>

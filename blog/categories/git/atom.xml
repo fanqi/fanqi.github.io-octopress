@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Git | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://www.fanqi.xyz/"/>
+  <updated>2016-05-27T13:19:49+08:00</updated>
+  <id>http://www.fanqi.xyz/</id>
+  <author>
+    <name><![CDATA[范琪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Git Commands]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/27/git-commands/"/>
+    <updated>2016-05-27T13:15:36+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/27/git-commands</id>
+    <content type="html"><![CDATA[<h2>A simple command-line tutorial</h2>
+
+<p>Git global settings:
+<code>
+git config --global user.name "fanqi"
+git config --global user.email "oschina@fanqi.xyz"
+</code>
+Create git repository:
+<code>
+mkdir lportal-ce-6.2.5-ace-1.3.5-unstyled-velocity-theme
+cd lportal-ce-6.2.5-ace-1.3.5-unstyled-velocity-theme
+git init
+touch README.md
+git add README.md
+git commit -m "first commit"
+git remote add origin https://git.oschina.net/imfanqi/lportal-ce-6.2.5-ace-1.3.5-unstyled-velocity-theme.git
+git push -u origin master
+</code>
+Existing project?
+<code>
+cd existing_git_repo
+git remote add origin https://git.oschina.net/imfanqi/lportal-ce-6.2.5-ace-1.3.5-unstyled-velocity-theme.git
+git push -u origin master
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

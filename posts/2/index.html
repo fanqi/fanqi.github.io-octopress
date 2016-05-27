@@ -9,14 +9,12 @@
   <meta name="author" content="范琪">
 
   
-  <meta name="description" content="Subversion 是一个版本控制工具。Mac自带该软件，但是Mac上好用的客户端软件不多，因此有必要掌握svn的基本命令。 基本用法 1
-svn &lt;子命令&gt; [可选项] [参数] 查看版本信息 1
+  <meta name="description" content="应用场景 1
 2
 3
 4
 5
-# 查看版本信息和资源访问信息
-svn --version # &hellip;">
+&lt;tx:advice id="txadvice" transaction-manager="transactionManager"&gt; &lt;tx:attributes&gt; &lt;tx:method name="*" propagation=" &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +71,162 @@ svn --version # &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/05/18/the-propagation-properties-in-the-spring/">Spring中的Propagation属性配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-18T11:25:34+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:25 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>应用场景</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;tx:advice id="txadvice" transaction-manager="transactionManager"&gt;
+</span><span class='line'>    &lt;tx:attributes&gt;
+</span><span class='line'>        &lt;tx:method name="*" propagation="REQUIRED"/&gt;
+</span><span class='line'>    &lt;/tx:attributes&gt;
+</span><span class='line'>&lt;/tx:advice&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中，<code>propagation</code>的属性值有<code>REQUIRED</code>、<code>SUPPORTS</code>、<code>MANDATORY</code>、<code>REQUIRES_NEW</code>、<code>NOT_SUPPORTED</code>、<code>NEVER</code>、<code>NESTED</code>等7种，默认是<code>REQUIRED</code>。<br/>
+1. <code>REQUIRED</code>:如果存在一个事务，则支持当前事务;如果没有事务则开启。<br/>
+2. <code>SUPPORTS</code>:如果存在一个事务，支持当前事务;如果没有事务，则非事务的执行。<br/>
+3. <code>MANDATORY</code>:如果已经存在一个事务，支持当前事务;如果没有一个活动的事务，则抛出异常。<br/>
+4. <code>REQUIRES_NEW</code>:总是开启一个新的事务;如果一个事务存在，则将这个存在的事务挂起。<br/>
+5. <code>NOT_SUPPORTED</code>:总是非事务地执行;并挂起任何存在的事务。<br/>
+6. <code>NEVER</code>:总是非事务地执行，如果存在一个活动事务，则抛出异常。<br/>
+7. <code>NESTED</code>:如果一个活动的事务存在，则运行在一个嵌套的事务中，如果没有活动事务，则按<code>REQUIRED</code>属性执行。</p>
+
+<h2>解决嵌套事务异常的问题</h2>
+
+<h3>源代码</h3>
+
+<p>DataSyncManager.java</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataSyncManager</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">syncData</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">syncData</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">syncData</span><span class="o">(</span><span class="n">String</span> <span class="n">code</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">//递归同步</span>
+</span><span class='line'>    <span class="c1">//syncData(code)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>applicationContext.xml:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;tx:advice</span> <span class="na">id=</span><span class="s">&quot;txadvice&quot;</span> <span class="na">transaction-manager=</span><span class="s">&quot;transactionManager&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;tx:attributes&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&quot;*&quot;</span> <span class="na">propagation=</span><span class="s">&quot;REQUIRED&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&quot;sync*&quot;</span> <span class="na">propagation=</span><span class="s">&quot;REQUIRED&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/tx:attributes&gt;</span>
+</span><span class='line'><span class="nt">&lt;/tx:advice&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>异常信息</h3>
+
+<p>每次数据同步完成之后就会爆出错误，然后事务回滚，同步失败。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>ERROR [org.quarz.core.ErrorLogger 2185] - <span class="nt">&lt;Job</span> <span class="err">&lt;DEFAULT.syncDataListenerJobThrew</span> <span class="err">an</span> <span class="err">exception.</span><span class="nt">&gt;</span>
+</span><span class='line'>org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method &#39;syncData&#39; on target class [class com.text.db.manager.DataSyncManager$$EnhancerByCGLIB$$b012b05e] failed; nested exception is org.springframework.transaction.UnexceptedRollbackException: Transaction rolled back because it has been marked as rollback-only
+</span><span class='line'>...
+</span><span class='line'>&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>问题分析</h3>
+
+<p>根据原有配置，执行syncData()方法会创建事务，随后执行syncData(code)方法，以及递归方法都会支持当前事务，从而形成一个庞大的事务，在同步多天历史数据的情况下，很不可取，一旦出了问题，所有数据都会回滚。</p>
+
+<h3>解决办法</h3>
+
+<p>将事务进行拆分，一旦某阶段的数据同步成功，就提交事务，下一阶段的数据同步重新创建事务。<br/>
+DataSyncManager.java</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataSyncManager</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">initSyncData</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">syncData</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">syncData</span><span class="o">(</span><span class="n">String</span> <span class="n">code</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">//递归同步</span>
+</span><span class='line'>    <span class="c1">//syncData(code)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>applicationContext.xml:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;tx:advice</span> <span class="na">id=</span><span class="s">&quot;txadvice&quot;</span> <span class="na">transaction-manager=</span><span class="s">&quot;transactionManager&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;tx:attributes&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&quot;syncData&quot;</span> <span class="na">propagation=</span><span class="s">&quot;REQUIRES_NEW&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&quot;*&quot;</span> <span class="na">propagation=</span><span class="s">&quot;SUPPORTS&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/tx:attributes&gt;</span>
+</span><span class='line'><span class="nt">&lt;/tx:advice&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -548,6 +702,10 @@ svn --version # &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/05/27/git-commands/">Git Commands</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/05/27/ssh-no-password/">Mac中的SSH Keys配置</a>
       </li>
     
@@ -561,10 +719,6 @@ svn --version # &hellip;">
     
       <li class="post">
         <a href="/blog/2016/05/25/liferay-portlet-lifecycle/">Liferay Portlet 生命周期</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/05/24/oracle-command/">Oracle常用运维命令</a>
       </li>
     
   </ul>
