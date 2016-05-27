@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: ‘mac’ | 范琪的个人博客]]></title>
-  <link href="http://www.fanqi.xyz/blog/categories/mac/atom.xml" rel="self"/>
+  <title><![CDATA[Category: ‘ssh’ | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/ssh/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
   <updated>2016-05-27T12:32:01+08:00</updated>
   <id>http://www.fanqi.xyz/</id>

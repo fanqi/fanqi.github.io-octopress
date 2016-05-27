@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://www.fanqi.xyz/blog/2016/05/27/ssh-no-password/</loc>
+<lastmod>2016-05-27T09:51:47+08:00</lastmod>
+</url>
+<url>
 <loc>http://www.fanqi.xyz/blog/2016/05/26/modify-the-system-users-password-in-oracle-11g/</loc>
 <lastmod>2016-05-26T12:41:48+08:00</lastmod>
 </url>
 <url>
 <loc>http://www.fanqi.xyz/blog/2016/05/26/eclipse-tips/</loc>
 <lastmod>2016-05-26T09:27:04+08:00</lastmod>
-</url>
-<url>
-<loc>http://www.fanqi.xyz/blog/2016/05/25/liferay-internationalization/</loc>
-<lastmod>2016-05-25T11:13:57+08:00</lastmod>
 </url>
 <url>
 <loc>http://www.fanqi.xyz/blog/2016/05/25/liferay-portlet-lifecycle/</loc>
@@ -108,15 +108,15 @@
 <loc>http://www.fanqi.xyz/blog/categories/liferay-ce-6-dot-2-ga6/</loc>
 </url>
 <url>
-<loc>http://www.fanqi.xyz/blog/categories/internationalization/</loc>
-</url>
-<url>
-<loc>http://www.fanqi.xyz/blog/categories/guo-ji-hua/</loc>
-</url>
-<url>
 <loc>http://www.fanqi.xyz/blog/categories/eclipse/</loc>
 </url>
 <url>
 <loc>http://www.fanqi.xyz/blog/categories/oracle-11g/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/ssh/</loc>
+</url>
+<url>
+<loc>http://www.fanqi.xyz/blog/categories/mac/</loc>
 </url>
 </urlset>

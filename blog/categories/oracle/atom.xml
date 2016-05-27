@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oracle | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/oracle/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-26T13:35:26+08:00</updated>
+  <updated>2016-05-27T12:32:01+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -130,6 +130,20 @@ SIZE 512m
 AUTOEXTEND ON
 NEXT 512m
 MAXSIZE 4096m;
+</code></pre>
+
+<h2>创建表空间</h2>
+
+<pre><code>CREATE SMALLFILE TABLESPACE "LPORTAL" DATAFILE 'D:\APP\ADMINISTRATOR\ORADATA\ORCL\LPORTAL.DBF' SIZE 100M AUTOEXTEND ON NEXT 100M MAXSIZE UNLIMITED LOGGING EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO
+</code></pre>
+
+<p>区管理本地管理，类型永久，状态读写，数据文件满后自动扩展，增量为100M，最大文件大小无限制。</p>
+
+<h2>创建用户</h2>
+
+<pre><code>CREATE USER "LPORTAL" PROFILE "DEFAULT" IDENTIFIED BY "*******" DEFAULT TABLESPACE "LPORTAL" TEMPORARY TABLESPACE "TEMP" ACCOUNT UNLOCK
+GRANT "CONNECT" TO "LPORTAL"
+GRANT "DBA" TO "LPORTAL"
 </code></pre>
 ]]></content>
   </entry>

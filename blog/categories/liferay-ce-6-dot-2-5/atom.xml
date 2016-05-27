@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Liferay Ce 6.2.5 | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/liferay-ce-6-dot-2-5/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-26T13:35:26+08:00</updated>
+  <updated>2016-05-27T12:32:01+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -12,30 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Liferay 国际化]]></title>
-    <link href="http://www.fanqi.xyz/blog/2016/05/25/liferay-internationalization/"/>
-    <updated>2016-05-25T11:13:57+08:00</updated>
-    <id>http://www.fanqi.xyz/blog/2016/05/25/liferay-internationalization</id>
-    <content type="html"><![CDATA[<h2>概述</h2>
-
-<p>Liferay默认支持国际化，也提供了一套完成的国际化方法。</p>
-
-<h2>给portlet添加国际化支持</h2>
-
-<p>在portlet.xml中，找到需要国际化的portlet，在<code>portlet-info</code>子节点前面，增加以下配置：
-<code>xml
-&lt;resource-bundle&gt;content.Language&lt;/resource-bundle&gt;
-</code></p>
-
-<h2>创建国际化资源文件</h2>
-
-<p>在当前插件工程的
-创建一个默认的Language.properties
-创建一个中国的国际化资源文件Language_zh_CN.properties，其中zh_CN代表的就是中国。</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Liferay Portlet 生命周期]]></title>
@@ -56,182 +32,96 @@ portlet的生命周期分为六个阶段：<br/>
 <h2>示例代码</h2>
 
 <p>view.jsp
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;%@ taglib uri=&ldquo;&lt;a href="http://java.sun.com/portlet_2_0"&gt;http://java.sun.com/portlet_2_0&lt;/a&gt;&rdquo; prefix=&ldquo;portlet&rdquo;%&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;portlet:defineObjects /&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;This is the
-</span><span class='line'>&lt;b&gt;Lifecycle&lt;/b&gt;
-</span><span class='line'>portlet in View mode.
-</span><span class='line'>&lt;br&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;portlet:renderURL var=&ldquo;viewURL&rdquo; /&gt;
-</span><span class='line'>&lt;a href="&lt;%=viewURL%&gt;&ldquo;&gt;viewURL&lt;/a&gt;
-</span><span class='line'>&lt;br&gt;
-</span><span class='line'>&lt;portlet:actionURL var="actionURL&rdquo; name=&ldquo;doAction&rdquo;&gt;&lt;/portlet:actionURL&gt;
-</span><span class='line'>&lt;a href="&lt;%=actionURL%&gt;&ldquo;&gt;actionURL&lt;/a&gt;
-</span><span class='line'>&lt;br&gt;
-</span><span class='line'>&lt;portlet:resourceURL var="resourceURL&rdquo; /&gt;
-</span><span class='line'>&lt;a href="&lt;%=resourceURL%&gt;&ldquo;&gt;resourceURL&lt;/a&gt;
-</span><span class='line'>&lt;br&gt;
-</span><span class='line'>&lt;code&gt;
-</span><span class='line'>LifecyclePortlet.java
-</span><span class='line'>&lt;/code&gt; java
-</span><span class='line'>public class LifecyclePortlet extends MVCPortlet {&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;@Override
-</span><span class='line'>public void init() throws PortletException {
-</span><span class='line'>    System.out.println("Lifecycle Phase (MVCPortlet) : init");
-</span><span class='line'>    super.init();
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void init(PortletConfig config) throws PortletException {
-</span><span class='line'>    System.out.println("Lifecycle Phase (GenericPortlet) : init");
-</span><span class='line'>    super.init(config);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void render(RenderRequest arg0, RenderResponse arg1)
-</span><span class='line'>        throws PortletException, IOException {
-</span><span class='line'>    System.out.println("Lifecycle Phase: render");
-</span><span class='line'>    super.render(arg0, arg1);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void processAction(ActionRequest actionRequest,
-</span><span class='line'>        ActionResponse actionResponse) throws IOException, PortletException {
-</span><span class='line'>    System.out.println("Lifecycle Phase: processAction");
-</span><span class='line'>    super.processAction(actionRequest, actionResponse);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>public void doAction(ActionRequest actionRequest,
-</span><span class='line'>        ActionResponse actionResponse) throws IOException, PortletException {
-</span><span class='line'>    System.out.println("LifecyclePortlet: doAction");
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void processEvent(EventRequest arg0, EventResponse arg1)
-</span><span class='line'>        throws PortletException, IOException {
-</span><span class='line'>    System.out.println("Lifecycle Phase: processEvent");
-</span><span class='line'>    super.processEvent(arg0, arg1);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void serveResource(ResourceRequest resourceRequest,
-</span><span class='line'>        ResourceResponse resourceResponse) throws IOException,
-</span><span class='line'>        PortletException {
-</span><span class='line'>    System.out.println("Lifecycle Phase: serveResource");
-</span><span class='line'>    resourceResponse.setContentType("text/html;charset=UTF-8");
-</span><span class='line'>    PrintWriter out = null;
-</span><span class='line'>    try {
-</span><span class='line'>        out = resourceResponse.getWriter();
-</span><span class='line'>    } catch (IOException e) {
-</span><span class='line'>        e.printStackTrace();
-</span><span class='line'>    }
-</span><span class='line'>    String result = "serveResource";
-</span><span class='line'>    out.println(result);
-</span><span class='line'>    out.flush();
-</span><span class='line'>    out.close();
-</span><span class='line'>    super.serveResource(resourceRequest, resourceResponse);
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void destroy() {
-</span><span class='line'>    System.out.println("Lifecycle Phase (GenericPortlet) : destroy");
-</span><span class='line'>    super.destroy();
-</span><span class='line'>}
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;}</span></code></pre></td></tr></table></div></figure></p>
+```
+&lt;%@ taglib uri=&ldquo;<a href="http://java.sun.com/portlet_2_0">http://java.sun.com/portlet_2_0</a>&rdquo; prefix=&ldquo;portlet&rdquo;%></p>
+
+<p>&lt;portlet:defineObjects /></p>
+
+<p>This is the
+<b>Lifecycle</b>
+portlet in View mode.
+<br></p>
+
+<p>&lt;portlet:renderURL var=&ldquo;viewURL&rdquo; />
+<a href="<%=viewURL%>&ldquo;>viewURL</a>
+<br>
+&lt;portlet:actionURL var="actionURL&rdquo; name=&ldquo;doAction&rdquo;>&lt;/portlet:actionURL>
+<a href="<%=actionURL%>&ldquo;>actionURL</a>
+<br>
+&lt;portlet:resourceURL var="resourceURL&rdquo; />
+<a href="<%=resourceURL%>&ldquo;>resourceURL</a>
+<br>
+<code>
+LifecyclePortlet.java
+</code> java
+public class LifecyclePortlet extends MVCPortlet {</p>
+
+<pre><code>@Override
+public void init() throws PortletException {
+    System.out.println("Lifecycle Phase (MVCPortlet) : init");
+    super.init();
+}
+
+@Override
+public void init(PortletConfig config) throws PortletException {
+    System.out.println("Lifecycle Phase (GenericPortlet) : init");
+    super.init(config);
+}
+
+@Override
+public void render(RenderRequest arg0, RenderResponse arg1)
+        throws PortletException, IOException {
+    System.out.println("Lifecycle Phase: render");
+    super.render(arg0, arg1);
+}
+
+@Override
+public void processAction(ActionRequest actionRequest,
+        ActionResponse actionResponse) throws IOException, PortletException {
+    System.out.println("Lifecycle Phase: processAction");
+    super.processAction(actionRequest, actionResponse);
+}
+
+public void doAction(ActionRequest actionRequest,
+        ActionResponse actionResponse) throws IOException, PortletException {
+    System.out.println("LifecyclePortlet: doAction");
+}
+
+@Override
+public void processEvent(EventRequest arg0, EventResponse arg1)
+        throws PortletException, IOException {
+    System.out.println("Lifecycle Phase: processEvent");
+    super.processEvent(arg0, arg1);
+}
+
+@Override
+public void serveResource(ResourceRequest resourceRequest,
+        ResourceResponse resourceResponse) throws IOException,
+        PortletException {
+    System.out.println("Lifecycle Phase: serveResource");
+    resourceResponse.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = null;
+    try {
+        out = resourceResponse.getWriter();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    String result = "serveResource";
+    out.println(result);
+    out.flush();
+    out.close();
+    super.serveResource(resourceRequest, resourceResponse);
+}
+
+@Override
+public void destroy() {
+    System.out.println("Lifecycle Phase (GenericPortlet) : destroy");
+    super.destroy();
+}
+</code></pre>
+
+<p>}
+```</p>
 
 <h2>init</h2>
 
