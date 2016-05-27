@@ -4,7 +4,7 @@
   <title><![CDATA[范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-27T12:38:45+08:00</updated>
+  <updated>2016-05-27T12:40:17+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Mac中的的SSH Keys配置]]></title>
+    <title type="html"><![CDATA[Mac中的SSH Keys配置]]></title>
     <link href="http://www.fanqi.xyz/blog/2016/05/27/ssh-no-password/"/>
     <updated>2016-05-27T09:51:47+08:00</updated>
     <id>http://www.fanqi.xyz/blog/2016/05/27/ssh-no-password</id>
