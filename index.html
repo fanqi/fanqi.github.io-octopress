@@ -9,9 +9,8 @@
   <meta name="author" content="范琪">
 
   
-  <meta name="description" content="重置oracle 11g中sys用户的密码的步骤如下： 1. 登录oracle服务器，并启动命令提示符窗口
-2. 输入'sqlplus / as sysdba'，通过服务器认证连接oracle
-3. 输入修改密码的指令'alter user sys identified by password'， &hellip;">
+  <meta name="description" content="SSH Keys SSH key可以让你在你的电脑和服务器之间建立安全的加密连接，同时避免每次连接都需要输入密码的麻烦。
+像github、git@oschina都支持SSH key。 ssh免密码配置 以github上的ssh免密码配置为例，步骤如下： 生成ssh密钥对 使用github的邮箱账号 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +67,159 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/05/27/ssh-no-password/">Mac中的的SSH Keys配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-27T09:51:47+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:51 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>SSH Keys</h2>
+
+<p>SSH key可以让你在你的电脑和服务器之间建立安全的加密连接，同时避免每次连接都需要输入密码的麻烦。
+像github、git@oschina都支持SSH key。</p>
+
+<h2>ssh免密码配置</h2>
+
+<p>以github上的ssh免密码配置为例，步骤如下：</p>
+
+<h3>生成ssh密钥对</h3>
+
+<p>使用github的邮箱账号，生成ssh密钥对。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh-keygen -t rsa -C "github@fanqi.xyz"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>默认情况下会在~/.ssh/目录下生成一对密钥文件，私钥id_rsa，公钥id_rsa.pub。</p>
+
+<h3>查看公钥内容，并将其添加到github</h3>
+
+<p>github ssh配置链接：<a href="https://github.com/settings/keys">https://github.com/settings/keys</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat id_rsa.pub</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>验证是否添加成功</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -T git@github.com
+</span><span class='line'>Hi fanqi! You've successfully authenticated, but GitHub does not provide shell access.</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>多ssh keys配置</h2>
+
+<p>多ssh keys配置会由两种情况：<br/>
+1. 每个网站的用户名及邮箱都一致<br/>
+2. 每个网站的用户名和邮箱不一致<br/>
+对于第一种情况，应该是只需要生成一次密钥对，将同一个公钥添加到不同网站的ssh配置中，即可生效。  <br/>
+对于第二种情况，就需要进行以下配置了。</p>
+
+<h3>为每个网站生成特定的密钥对,指定不同的密钥文件名称</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh-keygen -t rsa -C "github@fanqi.xyz"
+</span><span class='line'>Generating public/private rsa key pair.
+</span><span class='line'>Enter file in which to save the key (/Users/fanqi/.ssh/id_rsa): /Users/fanqi/.ssh/github_rsa
+</span><span class='line'>Enter passphrase (empty for no passphrase):
+</span><span class='line'>Enter same passphrase again:
+</span><span class='line'>Your identification has been saved in github_rsa.
+</span><span class='line'>Your public key has been saved in github_rsa.pub.</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>添加密钥到ssh-agent</h3>
+
+<p>ssh-agent是一种控制用来保存公钥身份验证所使用的私钥的程序，其实ssh-agent就是一个密钥管理器，运行ssh-agent以后，使用ssh-add将私钥交给ssh-agent保管，其他程序需要身份验证的时候可以将验证申请交给ssh-agent来完成整个认证过程。<br/>
+ssh-agent在mac中默认是启用的，可以通过以下命名查看：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>eval "$(ssh-agent -s)"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果没有启用，则运行以下命令：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh-agent bash</span></code></pre></td></tr></table></div></figure>
+
+
+<p>添加生成的 SSH key 到 ssh-agent。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh-add github_rsa</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>添加config配置文件</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vi ~/.ssh/config</span></code></pre></td></tr></table></div></figure>
+
+
+<p>并进行如下配置：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'># github
+</span><span class='line'>Host github.com
+</span><span class='line'>    HostName github.com
+</span><span class='line'>    PreferredAuthentications publickey
+</span><span class='line'>    IdentityFile ~/.ssh/github_rsa
+</span><span class='line'>
+</span><span class='line'># oschina
+</span><span class='line'>Host git.oschina.net
+</span><span class='line'>    HostName git.oschina.net
+</span><span class='line'>    PreferredAuthentications publickey
+</span><span class='line'>    IdentityFile ~/.ssh/oschina_rsa
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>相关资料</h2>
+
+<ol>
+<li><a href="https://segmentfault.com/a/1190000002645623">https://segmentfault.com/a/1190000002645623</a></li>
+<li><a href="http://www.cnblogs.com/fanyong/p/3962455.html">http://www.cnblogs.com/fanyong/p/3962455.html</a></li>
+<li><a href="https://segmentfault.com/q/1010000000835302/a-1020000000883441">https://segmentfault.com/q/1010000000835302/a-1020000000883441</a></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -175,52 +327,6 @@
 <li>mac快捷键：option+command+s</li>
 </ul>
 
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/05/25/liferay-internationalization/">Liferay 国际化</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-05-25T11:13:57+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:13 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>概述</h2>
-
-<p>Liferay默认支持国际化，也提供了一套完成的国际化方法。</p>
-
-<h2>给portlet添加国际化支持</h2>
-
-<p>在portlet.xml中，找到需要国际化的portlet，在<code>portlet-info</code>子节点前面，增加以下配置：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;resource-bundle&gt;</span>content.Language<span class="nt">&lt;/resource-bundle&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>创建国际化资源文件</h2>
-
-<p>在当前插件工程的
-创建一个默认的Language.properties
-创建一个中国的国际化资源文件Language_zh_CN.properties，其中zh_CN代表的就是中国。</p>
 </div>
   
   
@@ -667,6 +773,26 @@ ajax也能够和resourceURL结合使用。<br/>
 </span><span class='line'><span class="n">AUTOEXTEND</span> <span class="k">ON</span>
 </span><span class='line'><span class="k">NEXT</span> <span class="mi">512</span><span class="n">m</span>
 </span><span class='line'><span class="n">MAXSIZE</span> <span class="mi">4096</span><span class="n">m</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>创建表空间</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='SQL'><span class='line'><span class="k">CREATE</span> <span class="n">SMALLFILE</span> <span class="n">TABLESPACE</span> <span class="ss">&quot;LPORTAL&quot;</span> <span class="n">DATAFILE</span> <span class="s1">&#39;D:\APP\ADMINISTRATOR\ORADATA\ORCL\LPORTAL.DBF&#39;</span> <span class="k">SIZE</span> <span class="mi">100</span><span class="n">M</span> <span class="n">AUTOEXTEND</span> <span class="k">ON</span> <span class="k">NEXT</span> <span class="mi">100</span><span class="n">M</span> <span class="n">MAXSIZE</span> <span class="n">UNLIMITED</span> <span class="n">LOGGING</span> <span class="n">EXTENT</span> <span class="n">MANAGEMENT</span> <span class="k">LOCAL</span> <span class="n">SEGMENT</span> <span class="k">SPACE</span> <span class="n">MANAGEMENT</span> <span class="n">AUTO</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>区管理本地管理，类型永久，状态读写，数据文件满后自动扩展，增量为100M，最大文件大小无限制。</p>
+
+<h2>创建用户</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='SQL'><span class='line'><span class="k">CREATE</span> <span class="k">USER</span> <span class="ss">&quot;LPORTAL&quot;</span> <span class="n">PROFILE</span> <span class="ss">&quot;DEFAULT&quot;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="ss">&quot;*******&quot;</span> <span class="k">DEFAULT</span> <span class="n">TABLESPACE</span> <span class="ss">&quot;LPORTAL&quot;</span> <span class="k">TEMPORARY</span> <span class="n">TABLESPACE</span> <span class="ss">&quot;TEMP&quot;</span> <span class="n">ACCOUNT</span> <span class="n">UNLOCK</span>
+</span><span class='line'><span class="k">GRANT</span> <span class="ss">&quot;CONNECT&quot;</span> <span class="k">TO</span> <span class="ss">&quot;LPORTAL&quot;</span>
+</span><span class='line'><span class="k">GRANT</span> <span class="ss">&quot;DBA&quot;</span> <span class="k">TO</span> <span class="ss">&quot;LPORTAL&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
@@ -1134,15 +1260,15 @@ DataSyncManager.java</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/05/27/ssh-no-password/">Mac中的的SSH Keys配置</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/05/26/modify-the-system-users-password-in-oracle-11g/">重置oracle 11g中sys用户的密码</a>
       </li>
     
       <li class="post">
         <a href="/blog/2016/05/26/eclipse-tips/">Eclipse技巧</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/05/25/liferay-internationalization/">Liferay 国际化</a>
       </li>
     
       <li class="post">

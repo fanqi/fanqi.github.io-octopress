@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Spring | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/spring/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-27T12:32:01+08:00</updated>
+  <updated>2016-05-27T12:38:45+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -41,46 +41,76 @@
 <h3>源代码</h3>
 
 <p>DataSyncManager.java<br/>
-``` java
-public class DataSyncManager {</p>
-
-<p>public void syncData() {
-    syncData(null);
-}
-public void syncData(String code) {
-    //递归同步
-    //syncData(code)
-}
-<code>
-applicationContext.xml:  
-</code> xml
-&lt;tx:advice id=&ldquo;txadvice&rdquo; transaction-manager=&ldquo;transactionManager&rdquo;>
-    &lt;tx:attributes>
-        &lt;tx:method name=&ldquo;<em>&rdquo; propagation=&ldquo;REQUIRED&rdquo;/>
-        &lt;tx:method name=&ldquo;sync</em>&rdquo; propagation=&ldquo;REQUIRED&rdquo;/>
-    &lt;/tx:attributes>
-&lt;/tx:advice>
-```</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataSyncManager</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">syncData</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">syncData</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">syncData</span><span class="o">(</span><span class="n">String</span> <span class="n">code</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">//递归同步</span>
+</span><span class='line'>    <span class="c1">//syncData(code)</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span>
+</span><span class='line'><span class="n">applicationContext</span><span class="o">.</span><span class="na">xml</span><span class="o">:</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">xml</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="nl">tx:</span><span class="n">advice</span> <span class="n">id</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">txadvice</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;</span> <span class="n">transaction</span><span class="o">-</span><span class="n">manager</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">transactionManager</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;&gt;</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="nl">tx:</span><span class="n">attributes</span><span class="o">&gt;</span>
+</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="nl">tx:</span><span class="n">method</span> <span class="n">name</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="o">;&lt;</span><span class="n">em</span><span class="o">&gt;&amp;</span><span class="n">rdquo</span><span class="o">;</span> <span class="n">propagation</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">REQUIRED</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;/&gt;</span>
+</span><span class='line'>        <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="nl">tx:</span><span class="n">method</span> <span class="n">name</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">sync</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&amp;</span><span class="n">rdquo</span><span class="o">;</span> <span class="n">propagation</span><span class="o">=&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">REQUIRED</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;/&gt;</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="nl">tx:</span><span class="n">attributes</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="o">;/</span><span class="nl">tx:</span><span class="n">advice</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h3>异常信息</h3>
 
 <p>每次数据同步完成之后就会爆出错误，然后事务回滚，同步失败。
-```
-ERROR [org.quarz.core.ErrorLogger 2185] - <Job <DEFAULT.syncDataListenerJobThrew an exception.>
-org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method &lsquo;syncData&rsquo; on target class [class com.text.db.manager.DataSyncManager$$EnhancerByCGLIB$$b012b05e] failed; nested exception is org.springframework.transaction.UnexceptedRollbackException: Transaction rolled back because it has been marked as rollback-only
-&hellip;</p>
-
-<blockquote><p>```</p></blockquote>
-
-<h3>问题分析</h3>
-
-<p>根据原有配置，执行syncData()方法会创建事务，随后执行syncData(code)方法，以及递归方法都会支持当前事务，从而形成一个庞大的事务，在同步多天历史数据的情况下，很不可取，一旦出了问题，所有数据都会回滚。</p>
-
-<h3>解决办法</h3>
-
-<p>将事务进行拆分，一旦某阶段的数据同步成功，就提交事务，下一阶段的数据同步重新创建事务。<br/>
-DataSyncManager.java<br/>
-``` java
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ERROR</span> <span class="o">[</span><span class="n">org</span><span class="o">.</span><span class="na">quarz</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">ErrorLogger</span> <span class="mi">2185</span><span class="o">]</span> <span class="o">-</span> <span class="o">&lt;</span><span class="n">Job</span> <span class="o">&lt;</span><span class="n">DEFAULT</span><span class="o">.</span><span class="na">syncDataListenerJobThrew</span> <span class="n">an</span> <span class="n">exception</span><span class="o">.&gt;</span>
+</span><span class='line'><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">scheduling</span><span class="o">.</span><span class="na">quartz</span><span class="o">.</span><span class="na">JobMethodInvocationFailedException</span><span class="o">:</span> <span class="n">Invocation</span> <span class="n">of</span> <span class="n">method</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="o">;</span><span class="n">syncData</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="o">;</span> <span class="n">on</span> <span class="n">target</span> <span class="kd">class</span> <span class="err">[</span><span class="nc">class</span> <span class="n">com</span><span class="o">.</span><span class="na">text</span><span class="o">.</span><span class="na">db</span><span class="o">.</span><span class="na">manager</span><span class="o">.</span><span class="na">DataSyncManager$$EnhancerByCGLIB$$b012b05e</span><span class="o">]</span> <span class="n">failed</span><span class="o">;</span> <span class="n">nested</span> <span class="n">exception</span> <span class="n">is</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">transaction</span><span class="o">.</span><span class="na">UnexceptedRollbackException</span><span class="o">:</span> <span class="n">Transaction</span> <span class="n">rolled</span> <span class="n">back</span> <span class="n">because</span> <span class="n">it</span> <span class="n">has</span> <span class="n">been</span> <span class="n">marked</span> <span class="n">as</span> <span class="n">rollback</span><span class="o">-</span><span class="n">only</span>
+</span><span class='line'><span class="o">&amp;</span><span class="n">hellip</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="err">```</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;&lt;/</span><span class="n">blockquote</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">问题分析</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">根据原有配置</span><span class="err">，</span><span class="n">执行syncData</span><span class="o">()</span><span class="n">方法会创建事务</span><span class="err">，</span><span class="n">随后执行syncData</span><span class="o">(</span><span class="n">code</span><span class="o">)</span><span class="n">方法</span><span class="err">，</span><span class="n">以及递归方法都会支持当前事务</span><span class="err">，</span><span class="n">从而形成一个庞大的事务</span><span class="err">，</span><span class="n">在同步多天历史数据的情况下</span><span class="err">，</span><span class="n">很不可取</span><span class="err">，</span><span class="n">一旦出了问题</span><span class="err">，</span><span class="n">所有数据都会回滚</span><span class="err">。</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">解决办法</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">将事务进行拆分</span><span class="err">，</span><span class="n">一旦某阶段的数据同步成功</span><span class="err">，</span><span class="n">就提交事务</span><span class="err">，</span><span class="n">下一阶段的数据同步重新创建事务</span><span class="err">。</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="n">DataSyncManager</span><span class="o">.</span><span class="na">java</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure> java
 public class DataSyncManager {</p>
 
 <p>public void initSyncData() {

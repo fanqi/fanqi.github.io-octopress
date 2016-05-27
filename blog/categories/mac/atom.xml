@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ‘mac’ | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-05-27T12:32:01+08:00</updated>
+  <updated>2016-05-27T12:38:45+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Mac中的的SSH Keys Configuration]]></title>
+    <title type="html"><![CDATA[Mac中的的SSH Keys配置]]></title>
     <link href="http://www.fanqi.xyz/blog/2016/05/27/ssh-no-password/"/>
     <updated>2016-05-27T09:51:47+08:00</updated>
     <id>http://www.fanqi.xyz/blog/2016/05/27/ssh-no-password</id>
@@ -35,10 +35,12 @@ ssh-keygen -t rsa -C "github@fanqi.xyz"
 </code>
 默认情况下会在~/.ssh/目录下生成一对密钥文件，私钥id_rsa，公钥id_rsa.pub。</p>
 
-<h3>查看公钥内容，并将其添加到github <a href="https://github.com/settings/keys">https://github.com/settings/keys</a></h3>
+<h3>查看公钥内容，并将其添加到github</h3>
 
-<pre><code>cat id_rsa.pub
-</code></pre>
+<p>github ssh配置链接：<a href="https://github.com/settings/keys">https://github.com/settings/keys</a>
+<code>
+cat id_rsa.pub
+</code></p>
 
 <h3>验证是否添加成功</h3>
 
@@ -51,7 +53,7 @@ Hi fanqi! You've successfully authenticated, but GitHub does not provide shell a
 <p>多ssh keys配置会由两种情况：<br/>
 1. 每个网站的用户名及邮箱都一致<br/>
 2. 每个网站的用户名和邮箱不一致<br/>
-对于第一种情况，应该是只需要生成一次密钥对，将同一个公钥添加到不同网站的ssh配置中，即可生效。<br/>
+对于第一种情况，应该是只需要生成一次密钥对，将同一个公钥添加到不同网站的ssh配置中，即可生效。  <br/>
 对于第二种情况，就需要进行以下配置了。</p>
 
 <h3>为每个网站生成特定的密钥对,指定不同的密钥文件名称</h3>
@@ -68,7 +70,7 @@ Your public key has been saved in github_rsa.pub.
 <h3>添加密钥到ssh-agent</h3>
 
 <p>ssh-agent是一种控制用来保存公钥身份验证所使用的私钥的程序，其实ssh-agent就是一个密钥管理器，运行ssh-agent以后，使用ssh-add将私钥交给ssh-agent保管，其他程序需要身份验证的时候可以将验证申请交给ssh-agent来完成整个认证过程。<br/>
-ssh-agent在mac中默认是启用的，可以通过以下命名查看：
+ssh-agent在mac中默认是启用的，可以通过以下命名查看：<br/>
 <code>
 eval "$(ssh-agent -s)"
 </code>
@@ -101,8 +103,9 @@ ssh-add github_rsa
 <p>Host git.oschina.net
     HostName git.oschina.net
     PreferredAuthentications publickey
-    IdentityFile ~/.ssh/oschina_rsa
-```</p>
+    IdentityFile ~/.ssh/oschina_rsa</p>
+
+<p>```</p>
 
 <h2>相关资料</h2>
 
