@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Maven | 范琪的个人博客]]></title>
+  <link href="http://www.fanqi.xyz/blog/categories/maven/atom.xml" rel="self"/>
+  <link href="http://www.fanqi.xyz/"/>
+  <updated>2016-06-01T13:44:54+08:00</updated>
+  <id>http://www.fanqi.xyz/</id>
+  <author>
+    <name><![CDATA[范琪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[使用Nexus OSS 2.xx搭建maven私服]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/05/27/maven-pravite-server/"/>
+    <updated>2016-05-27T19:16:54+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/05/27/maven-pravite-server</id>
+    <content type="html"><![CDATA[<h2>安装准备</h2>
+
+<ol>
+<li>jdk</li>
+<li>maven</li>
+<li><a href="http://www.sonatype.com/download-oss-sonatype">Nexus Repository Manager OSS 2.xx</a></li>
+</ol>
+
+
+<h2>解压并运行服务</h2>
+
+<p>将下载的nexus-2.13.0-01-bundle.tar.zip包解压到特定的目录，这里是/Applications/
+执行以下命令运行nexus:
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd /Applications/nexus-2.13.0-01-bundle/
+</span><span class='line'>fanqideMacBook-Pro:nexus-2.13.0-01-bundle fanqi$ ls
+</span><span class='line'>nexus-2.13.0-01 sonatype-work
+</span><span class='line'>fanqideMacBook-Pro:nexus-2.13.0-01-bundle fanqi$ cd nexus-2.13.0-01/bin
+</span><span class='line'>fanqideMacBook-Pro:bin fanqi$ sh nexus
+</span><span class='line'>Usage: nexus { console | start | stop | restart | status | dump }
+</span><span class='line'>fanqideMacBook-Pro:bin fanqi$ ./nexus start
+</span><span class='line'>Starting Nexus OSS&hellip;
+</span><span class='line'>Started Nexus OSS.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;默认端口是：8081，通过http://localhost:8081/nexus/可以访问网站。
+</span><span class='line'>
+</span><span class='line'>## 配置
+</span><span class='line'>
+</span><span class='line'>## 停止服务
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;fanqideMacBook-Pro:bin fanqi$ ./nexus stop
+</span><span class='line'>Stopping Nexus OSS&hellip;
+</span><span class='line'>Waiting for Nexus OSS to exit&hellip;
+</span><span class='line'>Waiting for Nexus OSS to exit&hellip;
+</span><span class='line'>Waiting for Nexus OSS to exit&hellip;
+</span><span class='line'>Stopped Nexus OSS.</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+</feed>

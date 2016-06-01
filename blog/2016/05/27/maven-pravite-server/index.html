@@ -5,11 +5,21 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>优化Octopress的访问速度 - 范琪的个人博客</title>
+  <title>使用Nexus OSS 2.xx搭建maven私服 - 范琪的个人博客</title>
   <meta name="author" content="范琪">
 
   
-  <meta name="description" content="今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问： http://fonts.googleapis.com/css?family=PT+Serif:regular, &hellip;">
+  <meta name="description" content="安装准备 jdk
+maven
+Nexus Repository Manager OSS 2.xx 解压并运行服务 将下载的nexus-2.13.0-01-bundle.tar.zip包解压到特定的目录，这里是/Applications/
+执行以下命令运行nexus: 1
+2
+3
+4
+5
+6
+7
+8 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +28,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.fanqi.xyz/blog/2016/05/13/let-octopress-faster-and-faster/">
+  <link rel="canonical" href="http://www.fanqi.xyz/blog/2016/05/27/maven-pravite-server/">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="范琪的个人博客" type="application/atom+xml">
@@ -69,7 +79,7 @@
   
   <header>
     
-      <h1 class="entry-title">优化Octopress的访问速度</h1>
+      <h1 class="entry-title">使用Nexus OSS 2.xx搭建maven私服</h1>
     
     
       <p class="meta">
@@ -78,46 +88,67 @@
 
 
 
-<time class='entry-date' datetime='2016-05-13T21:13:29+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:13 pm</span></time>
+<time class='entry-date' datetime='2016-05-27T19:16:54+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>7:16 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>今天重启了电脑，发现在没有科学上网的情况下，发现访问博客的时候，页面加载非常慢。通过chrome开发工具查看访问博客时的网络情况，发现导致博客巨慢无比原因是以下几个资源无法正常访问：</p>
+<div class="entry-content"><h2>安装准备</h2>
 
 <ol>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a></li>
-<li><a href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic">http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic</a></li>
-<li><a href="http://platform.twitter.com/widgets.js">http://platform.twitter.com/widgets.js</a></li>
+<li>jdk</li>
+<li>maven</li>
+<li><a href="http://www.sonatype.com/download-oss-sonatype">Nexus Repository Manager OSS 2.xx</a></li>
 </ol>
 
 
-<h2>优化Octopress的访问速度</h2>
+<h2>解压并运行服务</h2>
 
-<h3>1.使用360网站卫士代理访问Google前端公共库</h3>
-
-<p>调用Google前端公共库的文件是<code>octopress/source/_includes/head.html</code>，将其中的<code>ajax.googleapis.com</code>修改为<code>ajax.useso.com</code>。</p>
-
-<h3>2.使用360网站卫士代理访问Google免费字体库</h3>
-
-<p>调用Google免费字体库的文件是<code>/octopress/source/_includes/custom/head.html</code>，将其中的<code>fonts.googleapis.com</code>修改为：<code>fonts.useso.com</code>。</p>
-
-<h3>3.禁用twitter分享按钮</h3>
-
-<p>在<code>octopress/_config.yml</code>中找到<code>twitter_tweet_button</code>配置项，将<code>true</code>改为<code>false</code>。</p>
-
-<h3>4.重新生成静态博客及部署</h3>
+<p>将下载的nexus-2.13.0-01-bundle.tar.zip包解压到特定的目录，这里是/Applications/
+执行以下命令运行nexus:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
-</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd /Applications/nexus-2.13.0-01-bundle/
+</span><span class='line'>fanqideMacBook-Pro:nexus-2.13.0-01-bundle fanqi$ ls
+</span><span class='line'>nexus-2.13.0-01   sonatype-work
+</span><span class='line'>fanqideMacBook-Pro:nexus-2.13.0-01-bundle fanqi$ cd nexus-2.13.0-01/bin
+</span><span class='line'>fanqideMacBook-Pro:bin fanqi$ sh nexus
+</span><span class='line'>Usage: nexus { console | start | stop | restart | status | dump }
+</span><span class='line'>fanqideMacBook-Pro:bin fanqi$ ./nexus start
+</span><span class='line'>Starting Nexus OSS...
+</span><span class='line'>Started Nexus OSS.
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>之后我们就可以畅快的访问Octopress博客网站了。</p>
+<p>默认端口是：8081，通过<a href="http://localhost:8081/nexus/%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E7%BD%91%E7%AB%99%E3%80%82">http://localhost:8081/nexus/%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E7%BD%91%E7%AB%99%E3%80%82</a></p>
+
+<h2>配置</h2>
+
+<h2>停止服务</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>fanqideMacBook-Pro:bin fanqi$ ./nexus stop
+</span><span class='line'>Stopping Nexus OSS...
+</span><span class='line'>Waiting for Nexus OSS to exit...
+</span><span class='line'>Waiting for Nexus OSS to exit...
+</span><span class='line'>Waiting for Nexus OSS to exit...
+</span><span class='line'>Stopped Nexus OSS.</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -133,12 +164,12 @@
 
 
 
-<time class='entry-date' datetime='2016-05-13T21:13:29+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:13 pm</span></time>
+<time class='entry-date' datetime='2016-05-27T19:16:54+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>7:16 pm</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+    <a class='category' href='/blog/categories/maven/'>maven</a>
   
 </span>
 
@@ -154,10 +185,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2016/05/13/use-octopress-build-static-blog-site/" title="Previous Post: 使用Octopress搭建静态博客网站">&laquo; 使用Octopress搭建静态博客网站</a>
+        <a class="basic-alignment left" href="/blog/2016/05/27/git-commands/" title="Previous Post: git commands">&laquo; git commands</a>
       
       
-        <a class="basic-alignment right" href="/blog/2016/05/17/the-front-end-development-resources/" title="Next Post: 前端开发资源">前端开发资源 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2016/06/01/liferay-dynamic-query-api/" title="Next Post: Liferay Dynamic Query API">Liferay Dynamic Query API &raquo;</a>
       
     </p>
   </footer>
