@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mysql | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-06-01T13:44:54+08:00</updated>
+  <updated>2016-06-02T23:47:41+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在windows Server 2008中安装mysql 5.7.12解压版]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/06/02/install-mysql-5-dot-7-dot-12-unzip-version-in-windows-server-2008/"/>
+    <updated>2016-06-02T22:52:02+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/06/02/install-mysql-5-dot-7-dot-12-unzip-version-in-windows-server-2008</id>
+    <content type="html"><![CDATA[<h2>安装准备</h2>
+
+<ol>
+<li>windows server 2008</li>
+<li><a href="http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.12-winx64.zip">mysql-5.7.12-winx64.zip</a></li>
+</ol>
+
+
+<h2>目录规划</h2>
+
+<p>安装目录：C:\mysql-5.7.12-winx64（解压时会自动创建）
+数据目录：D:\mysqldata\5.7.12\data（需要手工创建）</p>
+
+<h2>安装步骤</h2>
+
+<h3>1. 解压zip包到安装目录</h3>
+
+<h3>2. 配置my.ini文件</h3>
+
+<p>复制安装目录中的my-default.ini，重命名为my.ini，并打开进行如下修改：
+<code>
+basedir = C:/mysql-5.7.12-winx64
+datadir = D:/mysqldata/5.7.12/data
+</code></p>
+
+<blockquote><p><strong>注意：</strong> <br/>
+1. 去掉basedir和datadir前面的#<br/>
+2. basedir添加的是MySQL的解压路径；<br/>
+3. datadir添加的是MySQL的data文件夹路径。</p></blockquote>
+
+<h3>3. 配置系统环境变量</h3>
+
+<p>MYSQL_HOME=C:\mysql-5.7.12-winx64<br/>
+PATH=PATH;%MYSQL_HOME%\bin</p>
+
+<h3>4. 初始化目录</h3>
+
+<p>使用系统管理员命令打开cmd命令提示窗口，并进入安装目录执行以下语句初始化目录：
+<code>
+mysqld --initialize-insecure --user=mysql
+</code>
+初始化完成没有任何提示。</p>
+
+<h3>5. 安装mysql</h3>
+
+<pre><code>mysqld install
+</code></pre>
+
+<p>出现“Service successfully installed”就代表MySQL服务成功安装了。</p>
+
+<h3>6. 启动mysql服务</h3>
+
+<pre><code>net start mysql
+</code></pre>
+
+<p>正常启动会出现“MySQL服务启动成功”。</p>
+
+<h3>7. 修改root账号密码，并允许远程访问</h3>
+
+<p>登录mysql，root的默认密码为空，直接回车即可。
+<code>
+mysql -u root -p
+</code>
+使用以下命令修改密码：
+<code>
+update mysql.user set authentication_string=password('root'),host='%' where user='root' and host='localhost';
+</code>
+5.7版本的mysql的user表中没有password字段，而是利用authentication_string字段存储加密后的密码。<br/>
+然后，重启mysql服务:
+<code>
+net stop mysql
+net start mysql
+</code></p>
+
+<h3>8. 远程连接mysql</h3>
+
+<pre><code>mysql -h 192.168.1.86 -P 3306 -u root -p
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL常用命令]]></title>

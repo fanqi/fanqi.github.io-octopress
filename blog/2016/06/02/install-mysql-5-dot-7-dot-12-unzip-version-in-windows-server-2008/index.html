@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>在windows Server 2008中安装mysql 5.7.12解压版 - 范琪的个人博客</title>
+  <meta name="author" content="范琪">
+
+  
+  <meta name="description" content="安装准备 windows server 2008
+mysql-5.7.12-winx64.zip 目录规划 安装目录：C:\mysql-5.7.12-winx64（解压时会自动创建）
+数据目录：D:\mysqldata\5.7.12\data（需要手工创建） 安装步骤 1. 解压zip包到安装目录 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.fanqi.xyz/blog/2016/06/02/install-mysql-5-dot-7-dot-12-unzip-version-in-windows-server-2008/">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="范琪的个人博客" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.useso.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">范琪的个人博客</a></h1>
+  
+    <h2>临渊羡鱼 不如退而结网</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.fanqi.xyz">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">归档</a></li>
+  <li><a href="/about">关于</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">在windows Server 2008中安装mysql 5.7.12解压版</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-06-02T22:52:02+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2016</span></span> <span class='time'>10:52 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>安装准备</h2>
+
+<ol>
+<li>windows server 2008</li>
+<li><a href="http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.12-winx64.zip">mysql-5.7.12-winx64.zip</a></li>
+</ol>
+
+
+<h2>目录规划</h2>
+
+<p>安装目录：C:\mysql-5.7.12-winx64（解压时会自动创建）
+数据目录：D:\mysqldata\5.7.12\data（需要手工创建）</p>
+
+<h2>安装步骤</h2>
+
+<h3>1. 解压zip包到安装目录</h3>
+
+<h3>2. 配置my.ini文件</h3>
+
+<p>复制安装目录中的my-default.ini，重命名为my.ini，并打开进行如下修改：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>basedir = C:/mysql-5.7.12-winx64
+</span><span class='line'>datadir = D:/mysqldata/5.7.12/data</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p><strong>注意：</strong> <br/>
+1. 去掉basedir和datadir前面的#<br/>
+2. basedir添加的是MySQL的解压路径；<br/>
+3. datadir添加的是MySQL的data文件夹路径。</p></blockquote>
+
+<h3>3. 配置系统环境变量</h3>
+
+<p>MYSQL_HOME=C:\mysql-5.7.12-winx64<br/>
+PATH=PATH;%MYSQL_HOME%\bin</p>
+
+<h3>4. 初始化目录</h3>
+
+<p>使用系统管理员命令打开cmd命令提示窗口，并进入安装目录执行以下语句初始化目录：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysqld --initialize-insecure --user=mysql</span></code></pre></td></tr></table></div></figure>
+
+
+<p>初始化完成没有任何提示。</p>
+
+<h3>5. 安装mysql</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysqld install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>出现“Service successfully installed”就代表MySQL服务成功安装了。</p>
+
+<h3>6. 启动mysql服务</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>net start mysql</span></code></pre></td></tr></table></div></figure>
+
+
+<p>正常启动会出现“MySQL服务启动成功”。</p>
+
+<h3>7. 修改root账号密码，并允许远程访问</h3>
+
+<p>登录mysql，root的默认密码为空，直接回车即可。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -u root -p</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用以下命令修改密码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>update mysql.user set authentication_string=password('root'),host='%' where user='root' and host='localhost';</span></code></pre></td></tr></table></div></figure>
+
+
+<p>5.7版本的mysql的user表中没有password字段，而是利用authentication_string字段存储加密后的密码。<br/>
+然后，重启mysql服务:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>net stop mysql
+</span><span class='line'>net start mysql</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>8. 远程连接mysql</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -h 192.168.1.86 -P 3306 -u root -p</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">范琪</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-06-02T22:52:02+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2016</span></span> <span class='time'>10:52 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mysql/'>mysql</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/06/01/liferay-dynamic-query-api/" title="Previous Post: Liferay Dynamic Query API">&laquo; Liferay Dynamic Query API</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/06/02/install-mysql-5-dot-7-dot-12-unzip-version-in-windows-server-2008/">在windows Server 2008中安装mysql 5.7.12解压版</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/06/01/liferay-dynamic-query-api/">Liferay Dynamic Query API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/05/27/maven-pravite-server/">使用Nexus OSS 2.xx搭建maven私服</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/05/27/git-commands/">Git Commands</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/05/27/ssh-no-password/">Mac中的SSH Keys配置</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - 范琪 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
