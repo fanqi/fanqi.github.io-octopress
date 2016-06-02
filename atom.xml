@@ -4,7 +4,7 @@
   <title><![CDATA[范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-06-02T23:47:41+08:00</updated>
+  <updated>2016-06-02T23:51:23+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[在windows Server 2008中安装mysql 5.7.12解压版]]></title>
-    <link href="http://www.fanqi.xyz/blog/2016/06/02/install-mysql-5-dot-7-dot-12-unzip-version-in-windows-server-2008/"/>
+    <title type="html"><![CDATA[安装mysql-5.7.12-winx64解压版]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/06/02/install-mysql-5-dot-7-12-winx64-decompression/"/>
     <updated>2016-06-02T22:52:02+08:00</updated>
-    <id>http://www.fanqi.xyz/blog/2016/06/02/install-mysql-5-dot-7-dot-12-unzip-version-in-windows-server-2008</id>
+    <id>http://www.fanqi.xyz/blog/2016/06/02/install-mysql-5-dot-7-12-winx64-decompression</id>
     <content type="html"><![CDATA[<h2>安装准备</h2>
 
 <ol>
