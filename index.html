@@ -9,9 +9,9 @@
   <meta name="author" content="范琪">
 
   
-  <meta name="description" content="安装准备 windows server 2008
-mysql-5.7.12-winx64.zip 目录规划 安装目录：C:\mysql-5.7.12-winx64（解压时会自动创建）
-数据目录：D:\mysqldata\5.7.12\data（需要手工创建） 安装步骤 1. 解压zip包到安装目录 &hellip;">
+  <meta name="description" content="下载免安装版MySQL mysql-5.5.50-winx64.zip
+mysql-5.6.31-winx64.zip
+mysql-5.7.13-winx64.zip 安装规划 安装目录：C:\mysql\mysql-5.5.50-winx64、C:\mysql\mysql-5.6.31- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +74,119 @@ mysql-5.7.12-winx64.zip 目录规划 安装目录：C:\mysql-5.7.12-winx64（解
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2016/06/03/install-multiple-versions-of-mysql/">在windows Server 2008中同时安装多个免安装版的MySQL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-06-03T13:38:54+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>1:38 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>下载免安装版MySQL</h2>
+
+<ol>
+<li><a href="http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.50-winx64.zip">mysql-5.5.50-winx64.zip</a></li>
+<li><a href="http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.31-winx64.zip">mysql-5.6.31-winx64.zip</a></li>
+<li><a href="http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.13-winx64.zip">mysql-5.7.13-winx64.zip</a></li>
+</ol>
+
+
+<h2>安装规划</h2>
+
+<p>安装目录：C:\mysql\mysql-5.5.50-winx64、C:\mysql\mysql-5.6.31-winx64、C:\mysql\mysql-5.7.13-winx64<br/>
+数据目录：D:\mysqldata\mysql-5.5.50-winx64、D:\mysqldata\mysql-5.6.31-winx64、D:\mysqldata\mysql-5.7.13-winx64</p>
+
+<h2>安装MySQL 5.5.50</h2>
+
+<h3>配置my.ini文件</h3>
+
+<p>使用命令提示符进入C:\mysql\mysql-5.5.50-winx64目录，从my-*.ini文件中选择一个复制并命名为my.ini。
+并进行如下配置：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[client]
+</span><span class='line'>password  = root
+</span><span class='line'>port      = 3305
+</span><span class='line'>socket        = /tmp/mysql55.sock
+</span><span class='line'>
+</span><span class='line'># Here follows entries for some specific programs
+</span><span class='line'>
+</span><span class='line'># The MySQL server
+</span><span class='line'>[mysqld]
+</span><span class='line'>basedir = C:/mysql/mysql-5.5.50-winx64
+</span><span class='line'>datadir = D:/mysqldata/mysql-5.5.50-winx64
+</span><span class='line'>character-set-server = utf8
+</span><span class='line'>
+</span><span class='line'>port      = 3305
+</span><span class='line'>socket        = /tmp/mysql55.sock</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>复制安装目录中data文件中的所有文件到数据目录</h3>
+
+<h3>安装MySQL55服务</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysqld install MySQL55</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>启动MySQL服务</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>net start MySQL55</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装MySQL 5.6.31</h2>
+
+<p>MySQL 5.6.31的安装方法同5.5.50，my.ini配置信息如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>basedir = c:/mysql-5.6.31-winx64
+</span><span class='line'>datadir = d:/mysqldata/5.6/data
+</span><span class='line'>port = 3306
+</span><span class='line'>character_set_server=utf8</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装MySQL 5.7.12</h2>
+
+<p>参考[安装mysql-5.7.12-winx64解压版]
+(<a href="http://www.fanqi.xyz/blog/2016/06/02/install-mysql-5-dot-7-12-winx64-decompression/">http://www.fanqi.xyz/blog/2016/06/02/install-mysql-5-dot-7-12-winx64-decompression/</a>)即可，但是端口改为3307，同时不要配置环境变量。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2016/06/02/install-mysql-5-dot-7-12-winx64-decompression/">安装mysql-5.7.12-winx64解压版</a></h1>
     
     
@@ -100,7 +213,7 @@ mysql-5.7.12-winx64.zip 目录规划 安装目录：C:\mysql-5.7.12-winx64（解
 
 <h2>目录规划</h2>
 
-<p>安装目录：C:\mysql-5.7.12-winx64（解压时会自动创建）
+<p>安装目录：C:\mysql-5.7.12-winx64（解压时会自动创建）<br/>
 数据目录：D:\mysqldata\5.7.12\data（需要手工创建）</p>
 
 <h2>安装步骤</h2>
@@ -161,10 +274,12 @@ PATH=PATH;%MYSQL_HOME%\bin</p>
 </pre></td><td class='code'><pre><code class=''><span class='line'>mysql -u root -p</span></code></pre></td></tr></table></div></figure>
 
 
-<p>使用以下命令修改密码：</p>
+<p>使用以下命令修改密码，并刷新权限：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>update mysql.user set authentication_string=password('root'),host='%' where user='root' and host='localhost';</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>update mysql.user set authentication_string=password('root'),host='%' where user='root' and host='localhost';
+</span><span class='line'>flush privileges;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>5.7版本的mysql的user表中没有password字段，而是利用authentication_string字段存储加密后的密码。<br/>
@@ -1366,133 +1481,6 @@ ajax也能够和resourceURL结合使用。<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/05/20/mysql-command/">MySQL常用命令</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-05-20T14:10:01+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>2:10 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>连接数据库</h1>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -u root -p</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>查看帮助信息</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; help</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>MySQL 命令清单</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>?         (\?) Synonym for `help'.
-</span><span class='line'>clear     (\c) Clear the current input statement.
-</span><span class='line'>connect   (\r) Reconnect to the server. Optional arguments are db and host.
-</span><span class='line'>delimiter (\d) Set statement delimiter.
-</span><span class='line'>edit      (\e) Edit command with $EDITOR.
-</span><span class='line'>ego       (\G) Send command to mysql server, display result vertically.
-</span><span class='line'>exit      (\q) Exit mysql. Same as quit.
-</span><span class='line'>go        (\g) Send command to mysql server.
-</span><span class='line'>help      (\h) Display this help.
-</span><span class='line'>nopager   (\n) Disable pager, print to stdout.
-</span><span class='line'>notee     (\t) Don't write into outfile.
-</span><span class='line'>pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
-</span><span class='line'>print     (\p) Print current command.
-</span><span class='line'>prompt    (\R) Change your mysql prompt.
-</span><span class='line'>quit      (\q) Quit mysql.
-</span><span class='line'>rehash    (\#) Rebuild completion hash.
-</span><span class='line'>source    (\.) Execute an SQL script file. Takes a file name as an argument.
-</span><span class='line'>status    (\s) Get status information from the server.
-</span><span class='line'>system    (\!) Execute a system shell command.
-</span><span class='line'>tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
-</span><span class='line'>use       (\u) Use another database. Takes database name as argument.
-</span><span class='line'>charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
-</span><span class='line'>warnings  (\W) Show warnings after every statement.
-</span><span class='line'>nowarning (\w) Don't show warnings after every statement.
-</span><span class='line'>resetconnection(\x) Clean session context.</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>展示数据库</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>show databases;</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>选择要使用的数据库</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use databasename</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>展示数据表</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#
-</span><span class='line'>show tables;
-</span><span class='line'># 模糊查询
-</span><span class='line'>show tables like '%user%';</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>查询表</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>select * from table;
-</span><span class='line'># 格式化输出
-</span><span class='line'>select * from table\g</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1508,6 +1496,10 @@ ajax也能够和resourceURL结合使用。<br/>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/06/03/install-multiple-versions-of-mysql/">在windows Server 2008中同时安装多个免安装版的MySQL</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/06/02/install-mysql-5-dot-7-12-winx64-decompression/">安装mysql-5.7.12-winx64解压版</a>
       </li>
     
@@ -1521,10 +1513,6 @@ ajax也能够和resourceURL结合使用。<br/>
     
       <li class="post">
         <a href="/blog/2016/05/27/git-commands/">Git Commands</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/05/27/ssh-no-password/">Mac中的SSH Keys配置</a>
       </li>
     
   </ul>
