@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Liferay | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/liferay/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-06-03T14:04:48+08:00</updated>
+  <updated>2016-06-09T14:33:49+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[theme-settings-in-liferay-6.2.5]]></title>
+    <link href="http://www.fanqi.xyz/blog/2016/06/09/theme-settings-in-liferay-6-dot-2-5/"/>
+    <updated>2016-06-09T12:34:57+08:00</updated>
+    <id>http://www.fanqi.xyz/blog/2016/06/09/theme-settings-in-liferay-6-dot-2-5</id>
+    <content type="html"><![CDATA[<h2>在主题中添加可配置信息</h2>
+
+<pre><code class="xml">&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.2.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_2_0.dtd"&gt;
+
+&lt;look-and-feel&gt;
+    &lt;compatibility&gt;
+        &lt;version&gt;6.2.5+&lt;/version&gt;
+    &lt;/compatibility&gt;
+    &lt;theme id="lp-ce-6.2.5-settings" name="Lp Ce 6.2.5 Settings"&gt;
+        &lt;settings&gt;
+            &lt;setting configurable="true" key="powered-by" type="textarea"
+                value="Liferay" /&gt;
+        &lt;/settings&gt;
+    &lt;/theme&gt;
+&lt;/look-and-feel&gt;
+</code></pre>
+
+<h2>在主题中使用settings</h2>
+
+<pre><code class="xml">&lt;footer id="footer" role="contentinfo"&gt;
+    &lt;p class="powered-by"&gt;
+        #language ("powered-by") $theme.getSetting("powered-by")
+    &lt;/p&gt;
+&lt;/footer&gt;
+</code></pre>
+
+<h2>部署并应用主题</h2>
+
+<p>部署成功之后，在应用主题的时候我们就可以看到以下内容：
+<img src="/images/theme-settings-in-liferay-6.2.5/theme-settings.jpg" alt="主题设置" />
+其中的<code>Liferay</code>就是配置文件中的value值。将其改为以下内容就可以实现和默认主题同样的效果。
+<code>
+&lt;a href="http://www.liferay.com" target="_blank"&gt;Liferay&lt;/a&gt;
+</code></p>
+
+<h2>参考资料</h2>
+
+<ol>
+<li><a href="https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/making-themes-configurable-with-settings">https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/making-themes-configurable-with-settings</a></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Liferay Portlet 生命周期]]></title>
