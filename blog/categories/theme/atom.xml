@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Theme | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/theme/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-06-09T14:46:52+08:00</updated>
+  <updated>2016-06-09T14:48:20+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -57,7 +57,7 @@
 
 <h2>在主题模板中使用配置信息</h2>
 
-<p>portal_normal.vm：
+<p>portal_normal.vm
 <code>xml
 &lt;footer id="footer" role="contentinfo"&gt;
     &lt;p class="powered-by"&gt;
