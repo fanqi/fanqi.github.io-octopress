@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Liferay | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/liferay/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-06-09T14:35:50+08:00</updated>
+  <updated>2016-06-09T14:46:52+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -18,38 +18,60 @@
     <link href="http://www.fanqi.xyz/blog/2016/06/09/theme-settings-in-liferay-6-dot-2-5/"/>
     <updated>2016-06-09T12:34:57+08:00</updated>
     <id>http://www.fanqi.xyz/blog/2016/06/09/theme-settings-in-liferay-6-dot-2-5</id>
-    <content type="html"><![CDATA[<h2>在主题中添加可配置信息</h2>
+    <content type="html"><![CDATA[<p>Liferay页面底部的<code>Powered By Liferay</code>默认是写在主题中的，如果我们想替换成个性化的信息，就必须在主题包中修改并重新部署主题。
+但是如果每次都这样操作就太麻烦了。
+其实通过lifery提供的theme settings的机制，可以使<code>Powered By</code>其变为可配置信息，需要变更的时候，只需要修改主题配置信息，而不必重新部署了。</p>
 
-<pre><code class="xml">&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.2.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_2_0.dtd"&gt;
+<h2>在主题中添加可配置信息</h2>
 
-&lt;look-and-feel&gt;
-    &lt;compatibility&gt;
-        &lt;version&gt;6.2.5+&lt;/version&gt;
-    &lt;/compatibility&gt;
-    &lt;theme id="lp-ce-6.2.5-settings" name="Lp Ce 6.2.5 Settings"&gt;
-        &lt;settings&gt;
-            &lt;setting configurable="true" key="powered-by" type="textarea"
-                value="Liferay" /&gt;
-        &lt;/settings&gt;
-    &lt;/theme&gt;
-&lt;/look-and-feel&gt;
-</code></pre>
+<p>liferay-look-and-feel.xml
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>?xml version=<span class="ni">&amp;ldquo;</span>1.0<span class="ni">&amp;rdquo;</span>?&gt;
+</span><span class='line'><span class="ni">&amp;lt;</span>!DOCTYPE look-and-feel PUBLIC <span class="ni">&amp;ldquo;</span>-//Liferay//DTD Look and Feel 6.2.0//EN<span class="ni">&amp;rdquo;</span> <span class="ni">&amp;ldquo;</span><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.liferay.com/dtd/liferay-look-and-feel_6_2_0.dtd&quot;</span><span class="nt">&gt;</span>http://www.liferay.com/dtd/liferay-look-and-feel_6_2_0.dtd<span class="nt">&lt;/a&gt;</span><span class="ni">&amp;rdquo;</span>&gt;<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;&lt;look-and-feel&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;compatibility&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;version&gt;</span>6.2.5+<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/compatibility&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;theme</span> <span class="na">id=</span><span class="s">&quot;lp-ce-6.2.5-settings&quot;</span> <span class="na">name=</span><span class="s">&quot;Lp Ce 6.2.5 Settings&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;settings&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;setting</span> <span class="na">configurable=</span><span class="s">&quot;true&quot;</span> <span class="na">key=</span><span class="s">&quot;powered-by&quot;</span> <span class="na">type=</span><span class="s">&quot;textarea&quot;</span>
+</span><span class='line'>                <span class="na">value=</span><span class="s">&quot;Liferay&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/settings&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/theme&gt;</span>
+</span><span class='line'><span class="nt">&lt;/look-and-feel&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
-<h2>在主题中使用settings</h2>
+<h2>在主题模板中使用配置信息</h2>
 
-<pre><code class="xml">&lt;footer id="footer" role="contentinfo"&gt;
+<p>portal_normal.vm：
+<code>xml
+&lt;footer id="footer" role="contentinfo"&gt;
     &lt;p class="powered-by"&gt;
         #language ("powered-by") $theme.getSetting("powered-by")
     &lt;/p&gt;
 &lt;/footer&gt;
-</code></pre>
+</code></p>
 
 <h2>部署并应用主题</h2>
 
-<p>部署成功之后，在应用主题的时候我们就可以看到以下内容：
+<p>部署成功之后，应用主题时就可以看到主题设置：
 <img src="/images/theme-settings-in-liferay-6.2.5/theme-settings.jpg" alt="主题设置" />
-其中的<code>Liferay</code>就是配置文件中的value值。将其改为以下内容就可以实现和默认主题同样的效果。
+其中的<code>Liferay</code>就是配置文件中的value值。<br/>
+将其改为以下内容就可以实现和默认主题同样的效果。
 <code>
 &lt;a href="http://www.liferay.com" rel="external"&gt;Liferay&lt;/a&gt;
 </code></p>
@@ -82,7 +104,7 @@ portlet的生命周期分为六个阶段：<br/>
 <h2>示例代码</h2>
 
 <p>view.jsp
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -170,94 +192,95 @@ portlet的生命周期分为六个阶段：<br/>
 <span class='line-number'>86</span>
 <span class='line-number'>87</span>
 <span class='line-number'>88</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;%@ taglib uri=&ldquo;&lt;a href="http://java.sun.com/portlet_2_0"&gt;http://java.sun.com/portlet_2_0&lt;/a&gt;&rdquo; prefix=&ldquo;portlet&rdquo;%&gt;&lt;/p&gt;
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>%@ taglib uri=<span class="ni">&amp;ldquo;</span><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://java.sun.com/portlet_2_0&quot;</span><span class="nt">&gt;</span>http://java.sun.com/portlet_2_0<span class="nt">&lt;/a&gt;</span><span class="ni">&amp;rdquo;</span> prefix=<span class="ni">&amp;ldquo;</span>portlet<span class="ni">&amp;rdquo;</span>%&gt;<span class="nt">&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;portlet:defineObjects /&gt;&lt;/p&gt;
+</span><span class='line'><span class="nt">&lt;p&gt;</span><span class="ni">&amp;lt;</span>portlet:defineObjects /&gt;<span class="nt">&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;This is the
-</span><span class='line'>&lt;b&gt;Lifecycle&lt;/b&gt;
+</span><span class='line'><span class="nt">&lt;p&gt;</span>This is the
+</span><span class='line'><span class="nt">&lt;b&gt;</span>Lifecycle<span class="nt">&lt;/b&gt;</span>
 </span><span class='line'>portlet in View mode.
-</span><span class='line'>&lt;br&gt;&lt;/p&gt;
+</span><span class='line'><span class="nt">&lt;br&gt;&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;portlet:renderURL var=&ldquo;viewURL&rdquo; /&gt;
-</span><span class='line'>&lt;a href="&lt;%=viewURL%&gt;&ldquo;&gt;viewURL&lt;/a&gt;
-</span><span class='line'>&lt;br&gt;
-</span><span class='line'>&lt;portlet:actionURL var="actionURL&rdquo; name=&ldquo;doAction&rdquo;&gt;&lt;/portlet:actionURL&gt;
-</span><span class='line'>&lt;a href="&lt;%=actionURL%&gt;&ldquo;&gt;actionURL&lt;/a&gt;
-</span><span class='line'>&lt;br&gt;
-</span><span class='line'>&lt;portlet:resourceURL var="resourceURL&rdquo; /&gt;
-</span><span class='line'>&lt;a href="&lt;%=resourceURL%&gt;&ldquo;&gt;resourceURL&lt;/a&gt;
-</span><span class='line'>&lt;br&gt;
-</span><span class='line'>&lt;code&gt;
-</span><span class='line'>LifecyclePortlet.java
-</span><span class='line'>&lt;/code&gt; java
-</span><span class='line'>public class LifecyclePortlet extends MVCPortlet {&lt;/p&gt;
+</span><span class='line'><span class="nt">&lt;p&gt;</span><span class="ni">&amp;lt;</span>portlet:renderURL var=<span class="ni">&amp;ldquo;</span>viewURL<span class="ni">&amp;rdquo;</span> /&gt;
+</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&lt;%=viewURL%&gt;&amp;ldquo;&gt;viewURL&lt;/a&gt;</span>
+</span><span class='line'><span class="s">&lt;br&gt;</span>
+</span><span class='line'><span class="s">&amp;lt;portlet:actionURL var=&quot;</span><span class="err">actionURL&amp;rdquo;</span> <span class="na">name=</span><span class="s">&amp;ldquo;doAction&amp;rdquo;</span><span class="nt">&gt;</span><span class="ni">&amp;lt;</span>/portlet:actionURL&gt;
+</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&lt;%=actionURL%&gt;&amp;ldquo;&gt;actionURL&lt;/a&gt;</span>
+</span><span class='line'><span class="s">&lt;br&gt;</span>
+</span><span class='line'><span class="s">&amp;lt;portlet:resourceURL var=&quot;</span><span class="err">resourceURL&amp;rdquo;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&lt;%=resourceURL%&gt;&amp;ldquo;&gt;resourceURL&lt;/a&gt;</span>
+</span><span class='line'><span class="s">&lt;br&gt;</span>
+</span><span class='line'><span class="s">&lt;code&gt;</span>
+</span><span class='line'><span class="s">LifecyclePortlet.java</span>
+</span><span class='line'><span class="s">&lt;/code&gt; java</span>
+</span><span class='line'><span class="s">public class LifecyclePortlet extends MVCPortlet {&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;@Override
-</span><span class='line'>public void init() throws PortletException {
-</span><span class='line'>    System.out.println("Lifecycle Phase (MVCPortlet) : init");
-</span><span class='line'>    super.init();
-</span><span class='line'>}
+</span><span class='line'><span class="s">&lt;pre&gt;&lt;code&gt;@Override</span>
+</span><span class='line'><span class="s">public void init() throws PortletException {</span>
+</span><span class='line'><span class="s">    System.out.println(&quot;</span><span class="err">Lifecycle</span> <span class="err">Phase</span> <span class="err">(MVCPortlet)</span> <span class="err">:</span> <span class="err">init&quot;);</span>
+</span><span class='line'>    <span class="err">super.init();</span>
+</span><span class='line'><span class="err">}</span>
 </span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void init(PortletConfig config) throws PortletException {
-</span><span class='line'>    System.out.println("Lifecycle Phase (GenericPortlet) : init");
-</span><span class='line'>    super.init(config);
-</span><span class='line'>}
+</span><span class='line'><span class="err">@Override</span>
+</span><span class='line'><span class="err">public</span> <span class="err">void</span> <span class="err">init(PortletConfig</span> <span class="err">config)</span> <span class="err">throws</span> <span class="err">PortletException</span> <span class="err">{</span>
+</span><span class='line'>    <span class="err">System.out.println(&quot;Lifecycle</span> <span class="err">Phase</span> <span class="err">(GenericPortlet)</span> <span class="err">:</span> <span class="err">init&quot;);</span>
+</span><span class='line'>    <span class="err">super.init(config);</span>
+</span><span class='line'><span class="err">}</span>
 </span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void render(RenderRequest arg0, RenderResponse arg1)
-</span><span class='line'>        throws PortletException, IOException {
-</span><span class='line'>    System.out.println("Lifecycle Phase: render");
-</span><span class='line'>    super.render(arg0, arg1);
-</span><span class='line'>}
+</span><span class='line'><span class="err">@Override</span>
+</span><span class='line'><span class="err">public</span> <span class="err">void</span> <span class="err">render(RenderRequest</span> <span class="err">arg0,</span> <span class="err">RenderResponse</span> <span class="err">arg1)</span>
+</span><span class='line'>        <span class="err">throws</span> <span class="err">PortletException,</span> <span class="err">IOException</span> <span class="err">{</span>
+</span><span class='line'>    <span class="err">System.out.println(&quot;Lifecycle</span> <span class="err">Phase:</span> <span class="err">render&quot;);</span>
+</span><span class='line'>    <span class="err">super.render(arg0,</span> <span class="err">arg1);</span>
+</span><span class='line'><span class="err">}</span>
 </span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void processAction(ActionRequest actionRequest,
-</span><span class='line'>        ActionResponse actionResponse) throws IOException, PortletException {
-</span><span class='line'>    System.out.println("Lifecycle Phase: processAction");
-</span><span class='line'>    super.processAction(actionRequest, actionResponse);
-</span><span class='line'>}
+</span><span class='line'><span class="err">@Override</span>
+</span><span class='line'><span class="err">public</span> <span class="err">void</span> <span class="err">processAction(ActionRequest</span> <span class="err">actionRequest,</span>
+</span><span class='line'>        <span class="err">ActionResponse</span> <span class="err">actionResponse)</span> <span class="err">throws</span> <span class="err">IOException,</span> <span class="err">PortletException</span> <span class="err">{</span>
+</span><span class='line'>    <span class="err">System.out.println(&quot;Lifecycle</span> <span class="err">Phase:</span> <span class="err">processAction&quot;);</span>
+</span><span class='line'>    <span class="err">super.processAction(actionRequest,</span> <span class="err">actionResponse);</span>
+</span><span class='line'><span class="err">}</span>
 </span><span class='line'>
-</span><span class='line'>public void doAction(ActionRequest actionRequest,
-</span><span class='line'>        ActionResponse actionResponse) throws IOException, PortletException {
-</span><span class='line'>    System.out.println("LifecyclePortlet: doAction");
-</span><span class='line'>}
+</span><span class='line'><span class="err">public</span> <span class="err">void</span> <span class="err">doAction(ActionRequest</span> <span class="err">actionRequest,</span>
+</span><span class='line'>        <span class="err">ActionResponse</span> <span class="err">actionResponse)</span> <span class="err">throws</span> <span class="err">IOException,</span> <span class="err">PortletException</span> <span class="err">{</span>
+</span><span class='line'>    <span class="err">System.out.println(&quot;LifecyclePortlet:</span> <span class="err">doAction&quot;);</span>
+</span><span class='line'><span class="err">}</span>
 </span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void processEvent(EventRequest arg0, EventResponse arg1)
-</span><span class='line'>        throws PortletException, IOException {
-</span><span class='line'>    System.out.println("Lifecycle Phase: processEvent");
-</span><span class='line'>    super.processEvent(arg0, arg1);
-</span><span class='line'>}
+</span><span class='line'><span class="err">@Override</span>
+</span><span class='line'><span class="err">public</span> <span class="err">void</span> <span class="err">processEvent(EventRequest</span> <span class="err">arg0,</span> <span class="err">EventResponse</span> <span class="err">arg1)</span>
+</span><span class='line'>        <span class="err">throws</span> <span class="err">PortletException,</span> <span class="err">IOException</span> <span class="err">{</span>
+</span><span class='line'>    <span class="err">System.out.println(&quot;Lifecycle</span> <span class="err">Phase:</span> <span class="err">processEvent&quot;);</span>
+</span><span class='line'>    <span class="err">super.processEvent(arg0,</span> <span class="err">arg1);</span>
+</span><span class='line'><span class="err">}</span>
 </span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void serveResource(ResourceRequest resourceRequest,
-</span><span class='line'>        ResourceResponse resourceResponse) throws IOException,
-</span><span class='line'>        PortletException {
-</span><span class='line'>    System.out.println("Lifecycle Phase: serveResource");
-</span><span class='line'>    resourceResponse.setContentType("text/html;charset=UTF-8");
-</span><span class='line'>    PrintWriter out = null;
-</span><span class='line'>    try {
-</span><span class='line'>        out = resourceResponse.getWriter();
-</span><span class='line'>    } catch (IOException e) {
-</span><span class='line'>        e.printStackTrace();
-</span><span class='line'>    }
-</span><span class='line'>    String result = "serveResource";
-</span><span class='line'>    out.println(result);
-</span><span class='line'>    out.flush();
-</span><span class='line'>    out.close();
-</span><span class='line'>    super.serveResource(resourceRequest, resourceResponse);
-</span><span class='line'>}
+</span><span class='line'><span class="err">@Override</span>
+</span><span class='line'><span class="err">public</span> <span class="err">void</span> <span class="err">serveResource(ResourceRequest</span> <span class="err">resourceRequest,</span>
+</span><span class='line'>        <span class="err">ResourceResponse</span> <span class="err">resourceResponse)</span> <span class="err">throws</span> <span class="err">IOException,</span>
+</span><span class='line'>        <span class="err">PortletException</span> <span class="err">{</span>
+</span><span class='line'>    <span class="err">System.out.println(&quot;Lifecycle</span> <span class="err">Phase:</span> <span class="err">serveResource&quot;);</span>
+</span><span class='line'>    <span class="err">resourceResponse.setContentType(&quot;text/html;</span><span class="na">charset=</span><span class="s">UTF-8&quot;);</span>
+</span><span class='line'>    <span class="err">PrintWriter</span> <span class="na">out =</span> <span class="s">null;</span>
+</span><span class='line'>    <span class="err">try</span> <span class="err">{</span>
+</span><span class='line'>        <span class="na">out =</span> <span class="s">resourceResponse.getWriter();</span>
+</span><span class='line'>    <span class="err">}</span> <span class="err">catch</span> <span class="err">(IOException</span> <span class="err">e)</span> <span class="err">{</span>
+</span><span class='line'>        <span class="err">e.printStackTrace();</span>
+</span><span class='line'>    <span class="err">}</span>
+</span><span class='line'>    <span class="err">String</span> <span class="na">result =</span> <span class="s">&quot;serveResource&quot;</span><span class="err">;</span>
+</span><span class='line'>    <span class="err">out.println(result);</span>
+</span><span class='line'>    <span class="err">out.flush();</span>
+</span><span class='line'>    <span class="err">out.close();</span>
+</span><span class='line'>    <span class="err">super.serveResource(resourceRequest,</span> <span class="err">resourceResponse);</span>
+</span><span class='line'><span class="err">}</span>
 </span><span class='line'>
-</span><span class='line'>@Override
-</span><span class='line'>public void destroy() {
-</span><span class='line'>    System.out.println("Lifecycle Phase (GenericPortlet) : destroy");
-</span><span class='line'>    super.destroy();
-</span><span class='line'>}
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'><span class="err">@Override</span>
+</span><span class='line'><span class="err">public</span> <span class="err">void</span> <span class="err">destroy()</span> <span class="err">{</span>
+</span><span class='line'>    <span class="err">System.out.println(&quot;Lifecycle</span> <span class="err">Phase</span> <span class="err">(GenericPortlet)</span> <span class="err">:</span> <span class="err">destroy&quot;);</span>
+</span><span class='line'>    <span class="err">super.destroy();</span>
+</span><span class='line'><span class="err">}</span>
+</span><span class='line'><span class="err">&lt;/code</span><span class="nt">&gt;&lt;/pre&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;}</span></code></pre></td></tr></table></div></figure></p>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>}
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h2>init</h2>
 

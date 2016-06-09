@@ -9,22 +9,9 @@
   <meta name="author" content="范琪">
 
   
-  <meta name="description" content="在主题中添加可配置信息 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;!DOCTYPE look-and-feel PUBLIC &quot;-//Liferay//DTD Look and &hellip;">
+  <meta name="description" content="Liferay页面底部的Powered By Liferay默认是写在主题中的，如果我们想替换成个性化的信息，就必须在主题包中修改并重新部署主题。
+但是如果每次都这样操作就太麻烦了。
+其实通过lifery提供的theme settings的机制，可以使Powered By其变为可配置信息， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,7 +90,13 @@
   </header>
 
 
-  <div class="entry-content"><h2>在主题中添加可配置信息</h2>
+  <div class="entry-content"><p>Liferay页面底部的<code>Powered By Liferay</code>默认是写在主题中的，如果我们想替换成个性化的信息，就必须在主题包中修改并重新部署主题。
+但是如果每次都这样操作就太麻烦了。
+其实通过lifery提供的theme settings的机制，可以使<code>Powered By</code>其变为可配置信息，需要变更的时候，只需要修改主题配置信息，而不必重新部署了。</p>
+
+<h2>在主题中添加可配置信息</h2>
+
+<p>liferay-look-and-feel.xml</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -136,7 +129,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>在主题中使用settings</h2>
+<h2>在主题模板中使用配置信息</h2>
+
+<p>portal_normal.vm：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -153,9 +148,10 @@
 
 <h2>部署并应用主题</h2>
 
-<p>部署成功之后，在应用主题的时候我们就可以看到以下内容：
+<p>部署成功之后，应用主题时就可以看到主题设置：
 <img src="/images/theme-settings-in-liferay-6.2.5/theme-settings.jpg" alt="主题设置" />
-其中的<code>Liferay</code>就是配置文件中的value值。将其改为以下内容就可以实现和默认主题同样的效果。</p>
+其中的<code>Liferay</code>就是配置文件中的value值。<br/>
+将其改为以下内容就可以实现和默认主题同样的效果。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.liferay.com&quot;</span> <span class="na">rel=</span><span class="s">&quot;external&quot;</span><span class="nt">&gt;</span>Liferay<span class="nt">&lt;/a&gt;</span>
