@@ -4,7 +4,7 @@
   <title><![CDATA[Category: liferay-6.2.5 | 范琪的个人博客]]></title>
   <link href="http://www.fanqi.xyz/blog/categories/liferay-6-dot-2-5/atom.xml" rel="self"/>
   <link href="http://www.fanqi.xyz/"/>
-  <updated>2016-06-09T14:33:49+08:00</updated>
+  <updated>2016-06-09T14:35:50+08:00</updated>
   <id>http://www.fanqi.xyz/</id>
   <author>
     <name><![CDATA[范琪]]></name>
@@ -51,7 +51,7 @@
 <img src="/images/theme-settings-in-liferay-6.2.5/theme-settings.jpg" alt="主题设置" />
 其中的<code>Liferay</code>就是配置文件中的value值。将其改为以下内容就可以实现和默认主题同样的效果。
 <code>
-&lt;a href="http://www.liferay.com" target="_blank"&gt;Liferay&lt;/a&gt;
+&lt;a href="http://www.liferay.com" rel="external"&gt;Liferay&lt;/a&gt;
 </code></p>
 
 <h2>参考资料</h2>
